@@ -243,7 +243,7 @@
   
   
 
-  <article class="post post-type-tages " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -255,8 +255,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/06/06/page/" itemprop="url">
-                  分类测试文章
+                <a class="post-title-link" href="/2016/06/11/为学校的“古老”项目加功能/" itemprop="url">
+                  为学校的“古老”项目加功能
                 </a>
               
             
@@ -269,8 +269,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-06T23:39:28+08:00" content="2016-06-06">
-              2016-06-06
+            <time itemprop="dateCreated" datetime="2016-06-11T15:20:28+08:00" content="2016-06-11">
+              2016-06-11
             </time>
           </span>
 
@@ -283,8 +283,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Testing/" itemprop="url" rel="index">
-                    <span itemprop="name">Testing</span>
+                  <a href="/categories/http-java-cookie-中文编码/" itemprop="url" rel="index">
+                    <span itemprop="name">http,java,cookie,中文编码</span>
                   </a>
                 </span>
 
@@ -318,7 +318,402 @@
       
         
           
+            <p>编码问题一直是程序员开发中很头疼的问题，尤其是中国的程序员会更有体会。前两天学校老师让给学校的其中一个平台上添加修改密码功能（不知道为啥，竟然没有找回密码的功能，只能叹服），问题是学校不能给提供教务系统的登陆接口，因此要验证账户的合法性，我需要用做模拟登陆，然后拿教务系统的验证结果。很明显有以下几个问题：</p>
+<ol>
+<li>如何让教务系统的验证码显示在我的页面上？</li>
+<li>怎样保证提交验证码和账号时教务系统后台的验证码和我刚才获取到的一样？</li>
+<li>保证模拟提交的表单数据和页面正常提交一致。</li>
+<li>对登陆的结果进行分析。</li>
+<li>修改这个平台上的数据库用户数据。</li>
+</ol>
+<p>第一个问题比较简单：通过CloseableHttpClient类的方法就可获取到验证码图片，然后保存在在服务器上。因为不是有必要，所以我拿到验证码图片后没有对它里面的内容做识别。<br><img src="../image/网络教学平台获得验证码.png" alt="网络教学平台获得验证码">　<br>第一步实现后，我发现在页面上只能把启动tomcat后第一次保存的验证码图片显示出来，这个可能是因为图片作为静态资源，我尝试了各种从页面获取图片的方式，最后采用图片在服务端用base64加密，将加密后的流返回到页面，用jQueryjQuery对流还原，显示图片，如下：<br><img src="../image/验证码图片传到页面.png" alt="验证码图片传到页面">　</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
             
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/11/python实现简单爬虫/" itemprop="url">
+                  python实现简单爬虫
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-11T15:07:28+08:00" content="2016-06-11">
+              2016-06-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python-爬虫/" itemprop="url" rel="index">
+                    <span itemprop="name">python,爬虫</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>现在网上的资源特别丰富，尤其是如果在看到某些网站上的好看的图片就会想要保存下来，但是很麻烦需要的一个一个点击下载，可是如果我们用程序来处理的话，问题将会变得非常简单，只需要运行程序就可以拿到整个网页上的所有图片。</p>
+<p>　　下面我们可以看一下怎样用python实现一个简单的获取网页图片的的爬虫小程序。</p>
+<p>一、第一步，怎样获取到整个page？<br>getPage.py</p>
+<figure class="highlight plain"><figcaption><span>urllib</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">def getPage(url):</span><br><span class="line"></span><br><span class="line">    page = urllib.urlopen(url)</span><br><span class="line"></span><br><span class="line">    content = page.read()</span><br><span class="line"></span><br><span class="line">    return content</span><br><span class="line"> </span><br><span class="line">content = getPage(&quot;http://tieba.baidu.com/p/2510089409&quot;)</span><br></pre></td></tr></table></figure>
+<p>首先要导入urllib模块，此模块的作用是帮助我们通过url打开任意资源<br>urlopen(url, [,data])——根据url打开一个网页，根据参数区分post或者get<br>read()：读取整个页面所有信息<br>二、如何只获取到图片？</p>
+<p>savePhotos.py<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import urllib</span><br><span class="line">import re</span><br><span class="line"> </span><br><span class="line">def getPage(url):</span><br><span class="line">    page = urllib.urlopen(url)</span><br><span class="line">    content = page.read()</span><br><span class="line">    return content</span><br><span class="line"> </span><br><span class="line">def getPhotos(content):</span><br><span class="line">    reg = r&apos;src=&quot;(.+?\.jpg)&quot; pic_ext&apos;</span><br><span class="line">    imgre = re.compile(reg)</span><br><span class="line">    imglist = re.findall(imgre,content)</span><br><span class="line">    x = 0</span><br><span class="line">    for imgurl in imglist:</span><br><span class="line">        urllib.urlretrieve(imgurl,&apos;./photos/%s.jpg&apos; % x)</span><br><span class="line">        x+=1</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">content = getPage(&quot;http://tieba.baidu.com/p/2510089409&quot;)</span><br><span class="line"> </span><br><span class="line">print getPhotos(content)</span><br></pre></td></tr></table></figure></p>
+<p>正则表达式。这里我们用正则表达式来对获取到的网页信息进行过滤。</p>
+<p>　导入urllib和re模块</p>
+<p>　解析方法getPhotos.py中的语句</p>
+<p>　第一步：创建正则表达式的过滤规则；</p>
+<p>　第二步：编译正则表达式</p>
+<p>　第三步：将符合规则的文件即图片保存到imglist中</p>
+<p>　第四步：用urlretrieve（）方法保存图片到本地。其中第二个参数设置保存文件位置。</p>
+<p>这样就可以实现一个python的一个简单的获取网页图片的爬虫</p>
+<p>爬到的图片 ，如下：<br><img src="http://o8cmndmfu.bkt.clouddn.com/python_demo%E5%9B%BE%E9%9B%86%E7%A4%BA%E4%BE%8B.jpg" alt="python爬虫示例图集">　</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/11/hashMap/" itemprop="url">
+                  浅析HashMap
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-11T14:39:28+08:00" content="2016-06-11">
+              2016-06-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/hashMap-集合-java/" itemprop="url" rel="index">
+                    <span itemprop="name">hashMap,集合,java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。<br>通过HashMap源码分析Hash存储机制。<br>首先简单了解一下HashMap的特点：</p>
+<blockquote>
+<p>采用数组与链表结合的数据结构；用过数组和链表的朋友都对两者的特点很熟悉（或查看<a href="http://localhost:4000/2016/06/11/array_and_List/" target="_blank" rel="external">http://localhost:4000/2016/06/11/array_and_List/</a> ），但是为了将两者特点结合，所以某些方面不会比单独使用一个更高效。</p>
+</blockquote>
+<p>系统采用 Hash 算法决定集合元素的存储位置，这样可以保证能快速存、取集合元素；对于 HashMap 而言，系统 key-value 当成一个整体进行处理，系统总是根据 Hash 算法来计算 key-value 的存储位置，这样可以保证能快速存、取 Map 的 key-value 对。<br>接下来看一下源码：<br>成员变量：</p>
+<ol>
+<li>static final int DEFAULT_INITIAL_CAPACITY = 16;// 默认初始容量为16，必须为2的幂  </li>
+<li>static final int MAXIMUM_CAPACITY = 1 &lt;&lt; 30;// 最大容量为2的30次方  </li>
+<li>static final float DEFAULT_LOAD_FACTOR = 0.75f;// 默认加载因子0.75  </li>
+<li>transient Entry<k,v>[] table;// Entry数组，哈希表，长度必须为2的幂  </k,v></li>
+<li>transient int size;// 已存元素的个数  </li>
+<li>int threshold;// 下次扩容的临界值，size&gt;=threshold就会扩容  </li>
+<li>final float loadFactor;// 加载因子</li>
+</ol>
+<h4 id="三种构造函数（实际上有四种，这里讨论其中三个）"><a href="#三种构造函数（实际上有四种，这里讨论其中三个）" class="headerlink" title="三种构造函数（实际上有四种，这里讨论其中三个）"></a>三种构造函数（实际上有四种，这里讨论其中三个）</h4><ol>
+<li>不传入参数负载因子和容量，采用默认值即bucket=16，load_factory=0.75实例化HashMap()<br><img src="http://o8cmndmfu.bkt.clouddn.com/1%E8%B4%9F%E8%BD%BD%E5%9B%A0%E5%AD%90.png" alt="不传入参数负载因子和容量的构造函数">　</li>
+</ol>
+<p>2、传入容量初始值，负载因子采用默认值，按此值实例化HashMap()<br><img src="http://o8cmndmfu.bkt.clouddn.com/%E5%88%9D%E5%A7%8B%E5%AE%B9%E9%87%8F%E5%80%BC.png" alt="传入容量的构造函数"></p>
+<p>3、容量和负载因子都穿入初始值，须对参数值进行检测，容量值不得小于0，但也不能大于容量最大值，若大于最大值则按最大容量创建（2的30次方）；负载因子须大于0<br><img src="http://o8cmndmfu.bkt.clouddn.com/%E5%AE%B9%E9%87%8F%E5%80%BC%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9B%A0%E5%AD%90.png" alt="传入参数负载因子和容量的构造函数"></p>
+<p>重点看一下第三个构造方法，以为都要调用它。我们可以看到看第181-183行代码，这里做了一个移位运算，保证了初始容量一定为2的幂，假如你传的是5，那么最终的初始容量为8。为什么HashMap容量一定要为2的幂呢？HashMap中的数据结构是数组+单链表的组合，我们希望的是元素存放的更均匀，最理想的效果是，Entry数组中每个位置都只有一个元素，这样，查询的时候效率最高，不需要遍历单链表，也不需要通过equals去比较Key，而且空间利用率最大。那如何计算才会分布最均匀呢？我们首先想到的就是%运算，哈希值%容量=bucketIndex，我们阅读一下这段源码：</p>
+<p><img src="http://o8cmndmfu.bkt.clouddn.com/%E8%AE%A1%E7%AE%97%E6%A1%B6%E4%BD%8D%E7%BD%AE.png" alt="不传入参数负载因子和容量的构造函数"></p>
+<p>很明显在这里用到了位运算，可是为什么不用%取余呢？当容量一定是2^n时，h &amp; (length - 1) == h % length，它俩是等价不等效的，位运算首先要把数字转换成二进制数，然后与length（桶数量）进行与运算，但是这样做以人的思维来说是比较麻烦的，但是为什么要这样做呢？因为机器就只认识二进制码。（这里的 h 是通过key的hashcode最终计算出的哈希值，length是目前容量。）<br>一般加载因子设置为0,75，这可以说是一种折中的策略，如果加载因子过高加少了空间开销但是又会影响查询速度，过低又会导致扩容频繁，因为扩容的标志是桶占用个数=加载因子<em>容量。<br>那么扩容又是怎样的呢？<br>在需要扩容时，进行refresh，新容量=原容量</em>2，然后根据key重新计算hashcode再重新散列，将原有数据重新放进新的hashmap中，完成扩容。<br>如何获取hashmap中存储的元素？看get（）方法<br><img src="http://o8cmndmfu.bkt.clouddn.com/getValue.png" alt="不传入参数负载因子和容量的构造函数"></p>
+<p>在查询元素时将key传入作为参数，首先对key做判空处理，为空则调用getForNullKey()方法。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/11/array_and_List/" itemprop="url">
+                  数组与链表对比分析
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-11T14:20:28+08:00" content="2016-06-11">
+              2016-06-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数组，链表/" itemprop="url" rel="index">
+                    <span itemprop="name">数组，链表</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="数组存储方式采用线性结构，声明数组时需要声明类型，并且大小也会固定："><a href="#数组存储方式采用线性结构，声明数组时需要声明类型，并且大小也会固定：" class="headerlink" title="数组存储方式采用线性结构，声明数组时需要声明类型，并且大小也会固定："></a>数组存储方式采用线性结构，声明数组时需要声明类型，并且大小也会固定：</h2><h3 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h3><blockquote>
+<p>因此访问数组元素可根据数组下标随机访问，O(1).</p>
+</blockquote>
+<h3 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h3><blockquote>
+<p>大小固定，可能会造成空间浪费，或空间不够影响程序运行；<br>插入和删除元素却比较麻烦，可能需要移动部分数组元素以保证数组元素的物理位置保持连续。</p>
+</blockquote>
+<h2 id="链表采用链式存储结构，在声明时只需声明结构类型，："><a href="#链表采用链式存储结构，在声明时只需声明结构类型，：" class="headerlink" title="链表采用链式存储结构，在声明时只需声明结构类型，："></a>链表采用链式存储结构，在声明时只需声明结构类型，：</h2><h3 id="优点：-1"><a href="#优点：-1" class="headerlink" title="优点："></a>优点：</h3><blockquote>
+<p>链表大小在实际使用中可以动态增大和减小；<br>插入和删除操作就很方便，只需修改该元素节点邻接元素即可O(1).</p>
+</blockquote>
+<h3 id="缺点：-1"><a href="#缺点：-1" class="headerlink" title="缺点："></a>缺点：</h3><blockquote>
+<p>访问元素比较费时，需要逐个节点进行查看或能找到目标元素。</p>
+</blockquote>
+
           
         
       
@@ -489,7 +884,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -497,7 +892,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
