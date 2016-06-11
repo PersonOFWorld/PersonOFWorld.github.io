@@ -86,27 +86,27 @@
 
 
 
-<meta name="description" content="HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。通过HashMap源码分析Hash存储机制。首先简单了解一下HashMap的特点：
+<meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。通过HashMap源码分析Hash存储机制。首先简单了解一下HashMap的特点：
 
-采用数组与链表结合的数据结构；用过数组和链表的朋友都对两者的特点很熟悉（或查看http://localhost:4000/2016/">
+采用数组与链表结合的数据结构；用过数组和链表的朋友都对两者的特点很熟悉（或查看htt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅析HashMap">
 <meta property="og:url" content="http://yoursite.com/2016/06/11/hashMap/index.html">
 <meta property="og:site_name" content="Have A Rest">
-<meta property="og:description" content="HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。通过HashMap源码分析Hash存储机制。首先简单了解一下HashMap的特点：
+<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。通过HashMap源码分析Hash存储机制。首先简单了解一下HashMap的特点：
 
-采用数组与链表结合的数据结构；用过数组和链表的朋友都对两者的特点很熟悉（或查看http://localhost:4000/2016/">
+采用数组与链表结合的数据结构；用过数组和链表的朋友都对两者的特点很熟悉（或查看htt">
 <meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/1%E8%B4%9F%E8%BD%BD%E5%9B%A0%E5%AD%90.png">
 <meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/%E5%88%9D%E5%A7%8B%E5%AE%B9%E9%87%8F%E5%80%BC.png">
 <meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/%E5%AE%B9%E9%87%8F%E5%80%BC%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9B%A0%E5%AD%90.png">
 <meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/%E8%AE%A1%E7%AE%97%E6%A1%B6%E4%BD%8D%E7%BD%AE.png">
 <meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/getValue.png">
-<meta property="og:updated_time" content="2016-06-11T07:04:36.879Z">
+<meta property="og:updated_time" content="2016-06-11T08:28:27.447Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅析HashMap">
-<meta name="twitter:description" content="HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。通过HashMap源码分析Hash存储机制。首先简单了解一下HashMap的特点：
+<meta name="twitter:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。通过HashMap源码分析Hash存储机制。首先简单了解一下HashMap的特点：
 
-采用数组与链表结合的数据结构；用过数组和链表的朋友都对两者的特点很熟悉（或查看http://localhost:4000/2016/">
+采用数组与链表结合的数据结构；用过数组和链表的朋友都对两者的特点很熟悉（或查看htt">
 <meta name="twitter:image" content="http://o8cmndmfu.bkt.clouddn.com/1%E8%B4%9F%E8%BD%BD%E5%9B%A0%E5%AD%90.png">
 
 
@@ -324,29 +324,27 @@
       
 
       
-        <p>HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。<br>通过HashMap源码分析Hash存储机制。<br>首先简单了解一下HashMap的特点：</p>
+        <p>&ensp;&ensp;&ensp;&ensp;HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。<br>通过HashMap源码分析Hash存储机制。<br>首先简单了解一下HashMap的特点：</p>
 <blockquote>
 <p>采用数组与链表结合的数据结构；用过数组和链表的朋友都对两者的特点很熟悉（或查看<a href="http://localhost:4000/2016/06/11/array_and_List/" target="_blank" rel="external">http://localhost:4000/2016/06/11/array_and_List/</a> ），但是为了将两者特点结合，所以某些方面不会比单独使用一个更高效。</p>
 </blockquote>
-<p>系统采用 Hash 算法决定集合元素的存储位置，这样可以保证能快速存、取集合元素；对于 HashMap 而言，系统 key-value 当成一个整体进行处理，系统总是根据 Hash 算法来计算 key-value 的存储位置，这样可以保证能快速存、取 Map 的 key-value 对。<br>接下来看一下源码：<br>成员变量：</p>
+<p>&ensp;&ensp;&ensp;&ensp;系统采用 Hash 算法决定集合元素的存储位置，这样可以保证能快速存、取集合元素；对于 HashMap 而言，系统 key-value 当成一个整体进行处理，系统总是根据 Hash 算法来计算 key-value 的存储位置，这样可以保证能快速存、取 Map 的 key-value 对。<br>接下来看一下源码：<br>成员变量：</p>
 <ol>
 <li>static final int DEFAULT_INITIAL_CAPACITY = 16;// 默认初始容量为16，必须为2的幂  </li>
-<li>static final int MAXIMUM_CAPACITY = 1 &lt;&lt; 30;// 最大容量为2的30次方  </li>
-<li>static final float DEFAULT_LOAD_FACTOR = 0.75f;// 默认加载因子0.75  </li>
-<li>transient Entry<k,v>[] table;// Entry数组，哈希表，长度必须为2的幂  </k,v></li>
+<li>static final int MAXIMUM_CAPACITY = 1 &lt;&lt; 30;// 最大容量为2的30次方</li>
+<li>static final float DEFAULT_LOAD_FACTOR = 0.75f;// 默认加载因子0.75</li>
+<li>transient Entry<k,v>[] table;// Entry数组，哈希表，长度必须为2的幂</k,v></li>
 <li>transient int size;// 已存元素的个数  </li>
 <li>int threshold;// 下次扩容的临界值，size&gt;=threshold就会扩容  </li>
 <li>final float loadFactor;// 加载因子</li>
 </ol>
 <h4 id="三种构造函数（实际上有四种，这里讨论其中三个）"><a href="#三种构造函数（实际上有四种，这里讨论其中三个）" class="headerlink" title="三种构造函数（实际上有四种，这里讨论其中三个）"></a>三种构造函数（实际上有四种，这里讨论其中三个）</h4><ol>
-<li>不传入参数负载因子和容量，采用默认值即bucket=16，load_factory=0.75实例化HashMap()<br><img src="http://o8cmndmfu.bkt.clouddn.com/1%E8%B4%9F%E8%BD%BD%E5%9B%A0%E5%AD%90.png" alt="不传入参数负载因子和容量的构造函数">　</li>
+<li>不传入参数负载因子和容量，采用默认值即bucket=16，load_factory=0.75实例化HashMap()<br><img src="http://o8cmndmfu.bkt.clouddn.com/1%E8%B4%9F%E8%BD%BD%E5%9B%A0%E5%AD%90.png" alt="不传入参数负载因子和容量的构造函数">　<br>2、传入容量初始值，负载因子采用默认值，按此值实例化HashMap()<br><img src="http://o8cmndmfu.bkt.clouddn.com/%E5%88%9D%E5%A7%8B%E5%AE%B9%E9%87%8F%E5%80%BC.png" alt="传入容量的构造函数"><br>3、容量和负载因子都穿入初始值，须对参数值进行检测，容量值不得小于0，但也不能大于容量最大值，若大于最大值则按最大容量创建（2的30次方）；负载因子须大于0<br><img src="http://o8cmndmfu.bkt.clouddn.com/%E5%AE%B9%E9%87%8F%E5%80%BC%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9B%A0%E5%AD%90.png" alt="传入参数负载因子和容量的构造函数"></li>
 </ol>
-<p>2、传入容量初始值，负载因子采用默认值，按此值实例化HashMap()<br><img src="http://o8cmndmfu.bkt.clouddn.com/%E5%88%9D%E5%A7%8B%E5%AE%B9%E9%87%8F%E5%80%BC.png" alt="传入容量的构造函数"></p>
-<p>3、容量和负载因子都穿入初始值，须对参数值进行检测，容量值不得小于0，但也不能大于容量最大值，若大于最大值则按最大容量创建（2的30次方）；负载因子须大于0<br><img src="http://o8cmndmfu.bkt.clouddn.com/%E5%AE%B9%E9%87%8F%E5%80%BC%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9B%A0%E5%AD%90.png" alt="传入参数负载因子和容量的构造函数"></p>
-<p>重点看一下第三个构造方法，以为都要调用它。我们可以看到看第181-183行代码，这里做了一个移位运算，保证了初始容量一定为2的幂，假如你传的是5，那么最终的初始容量为8。为什么HashMap容量一定要为2的幂呢？HashMap中的数据结构是数组+单链表的组合，我们希望的是元素存放的更均匀，最理想的效果是，Entry数组中每个位置都只有一个元素，这样，查询的时候效率最高，不需要遍历单链表，也不需要通过equals去比较Key，而且空间利用率最大。那如何计算才会分布最均匀呢？我们首先想到的就是%运算，哈希值%容量=bucketIndex，我们阅读一下这段源码：</p>
-<p><img src="http://o8cmndmfu.bkt.clouddn.com/%E8%AE%A1%E7%AE%97%E6%A1%B6%E4%BD%8D%E7%BD%AE.png" alt="不传入参数负载因子和容量的构造函数"></p>
-<p>很明显在这里用到了位运算，可是为什么不用%取余呢？当容量一定是2^n时，h &amp; (length - 1) == h % length，它俩是等价不等效的，位运算首先要把数字转换成二进制数，然后与length（桶数量）进行与运算，但是这样做以人的思维来说是比较麻烦的，但是为什么要这样做呢？因为机器就只认识二进制码。（这里的 h 是通过key的hashcode最终计算出的哈希值，length是目前容量。）<br>一般加载因子设置为0,75，这可以说是一种折中的策略，如果加载因子过高加少了空间开销但是又会影响查询速度，过低又会导致扩容频繁，因为扩容的标志是桶占用个数=加载因子<em>容量。<br>那么扩容又是怎样的呢？<br>在需要扩容时，进行refresh，新容量=原容量</em>2，然后根据key重新计算hashcode再重新散列，将原有数据重新放进新的hashmap中，完成扩容。<br>如何获取hashmap中存储的元素？看get（）方法<br><img src="http://o8cmndmfu.bkt.clouddn.com/getValue.png" alt="不传入参数负载因子和容量的构造函数"></p>
-<p>在查询元素时将key传入作为参数，首先对key做判空处理，为空则调用getForNullKey()方法。</p>
+<p>&ensp;&ensp;&ensp;&ensp;重点看一下第三个构造方法，以为都要调用它。我们可以看到看第181-183行代码，这里做了一个移位运算，保证了初始容量一定为2的幂，假如你传的是5，那么最终的初始容量为8。为什么HashMap容量一定要为2的幂呢？HashMap中的数据结构是数组+单链表的组合，我们希望的是元素存放的更均匀，最理想的效果是，Entry数组中每个位置都只有一个元素，这样，查询的时候效率最高，不需要遍历单链表，也不需要通过equals去比较Key，而且空间利用率最大。那如何计算才会分布最均匀呢？我们首先想到的就是%运算，哈希值%容量=bucketIndex，我们阅读一下这段源码：<br><img src="http://o8cmndmfu.bkt.clouddn.com/%E8%AE%A1%E7%AE%97%E6%A1%B6%E4%BD%8D%E7%BD%AE.png" alt="不传入参数负载因子和容量的构造函数"></p>
+<p>&ensp;&ensp;&ensp;&ensp;很明显在这里用到了位运算，可是为什么不用%取余呢？当容量一定是2^n时，h &amp; (length - 1) == h % length，它俩是等价不等效的，位运算首先要把数字转换成二进制数，然后与length（桶数量）进行与运算，但是这样做以人的思维来说是比较麻烦的，但是为什么要这样做呢？因为机器就只认识二进制码。（这里的 h 是通过key的hashcode最终计算出的哈希值，length是目前容量。</p>
+<p>&ensp;&ensp;&ensp;&ensp;一般加载因子设置为0,75，这可以说是一种折中的策略，如果加载因子过高加少了空间开销但是又会影响查询速度，过低又会导致扩容频繁，因为扩容的标志是桶占用个数=加载因子<em>容量。<br>那么扩容又是怎样的呢？<br>在需要扩容时，进行refresh，新容量=原容量</em>2，然后根据key重新计算hashcode再重新散列，将原有数据重新放进新的hashmap中，完成扩容。<br>如何获取hashmap中存储的元素？看get（）方法<br><img src="http://o8cmndmfu.bkt.clouddn.com/getValue.png" alt="不传入参数负载因子和容量的构造函数"></p>
+<p>&ensp;&ensp;&ensp;&ensp;在查询元素时将key传入作为参数，首先对key做判空处理，为空则调用getForNullKey()方法。</p>
 
       
     </div>

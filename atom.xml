@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-11T07:54:22.260Z</updated>
+  <updated>2016-06-11T08:31:48.673Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,22 +20,21 @@
     <link href="http://yoursite.com/2016/06/11/%E4%B8%BA%E5%AD%A6%E6%A0%A1%E7%9A%84%E2%80%9C%E5%8F%A4%E8%80%81%E2%80%9D%E9%A1%B9%E7%9B%AE%E5%8A%A0%E5%8A%9F%E8%83%BD/"/>
     <id>http://yoursite.com/2016/06/11/为学校的“古老”项目加功能/</id>
     <published>2016-06-11T07:20:28.000Z</published>
-    <updated>2016-06-11T07:54:22.260Z</updated>
+    <updated>2016-06-11T08:31:48.673Z</updated>
     
-    <content type="html">&lt;p&gt;编码问题一直是程序员开发中很头疼的问题，尤其是中国的程序员会更有体会。前两天学校老师让给学校的其中一个平台上添加修改密码功能（不知道为啥，竟然没有找回密码的功能，只能叹服），问题是学校不能给提供教务系统的登陆接口，因此要验证账户的合法性，我需要用做模拟登陆，然后拿教务系统的验证结果。很明显有以下几个问题：&lt;/p&gt;
+    <content type="html">&lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;编码问题一直是程序员开发中很头疼的问题，尤其是中国的程序员会更有体会。前两天学校老师让给学校的其中一个平台上添加修改密码功能（不知道为啥，竟然没有找回密码的功能，只能叹服），问题是学校不能给提供教务系统的登陆接口，因此要验证账户的合法性，我需要用做模拟登陆，然后拿教务系统的验证结果。很明显有以下几个问题：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;如何让教务系统的验证码显示在我的页面上？&lt;/li&gt;
 &lt;li&gt;怎样保证提交验证码和账号时教务系统后台的验证码和我刚才获取到的一样？&lt;/li&gt;
 &lt;li&gt;保证模拟提交的表单数据和页面正常提交一致。&lt;/li&gt;
 &lt;li&gt;对登陆的结果进行分析。&lt;/li&gt;
-&lt;li&gt;修改这个平台上的数据库用户数据。&lt;/li&gt;
+&lt;li&gt;修改这个平台上的数据库用户数据。&lt;br&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;第一个问题比较简单：通过CloseableHttpClient类的方法就可获取到验证码图片，然后保存在在服务器上。因为不是有必要，所以我拿到验证码图片后没有对它里面的内容做识别。&lt;br&gt;&lt;img src=&quot;../image/网络教学平台获得验证码.png&quot; alt=&quot;网络教学平台获得验证码&quot;&gt;　&lt;br&gt;&amp;ensp;&amp;ensp;第一步实现后，我发现在页面上只能把启动tomcat后第一次保存的验证码图片显示出来，这个可能是因为图片作为静态资源，我尝试了各种从页面获取图片的方式，最后采用图片在服务端用base64加密，将加密后的流返回到页面，用jQueryjQuery对流还原，显示图片，如下：&lt;br&gt;&lt;img src=&quot;../image/验证码图片传到页面.png&quot; alt=&quot;验证码图片传到页面&quot;&gt;　服务端base64加密&lt;br&gt;&lt;img src=&quot;../image/验证码在页面还原.png&quot; alt=&quot;验证码在页面还原&quot;&gt;页面进行base64解密&lt;br&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;第二个问题如果开发者对http你叫熟悉的话很容易想到解决办法，就是保存请求时的会话cookie，然后在下次提交登陆信息时将cookie写进hppt请求的头，然后再发起请求，这样就能保证前后两次请求是在同一次会话，验证码也就不会失效。&lt;br&gt;&lt;img src=&quot;../image/保存cookie.png&quot; alt=&quot;保存cookie&quot;&gt;保存cookie&lt;br&gt;&lt;img src=&quot;../image/将保存的cooki写进http的头部.png&quot; alt=&quot;将保存的cooki写进http的头部&quot;&gt;　将保存的cooki写进http的头部&lt;br&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;这里我将hppt的头部内容都进行了补写，因为这是一个模拟请求，不是浏览器发起的请求，所以尽量将内容写完整，更像是一个真正的http请求，以免被服务器拒绝。&lt;br&gt;　　其实第三个问题花的时间能多一点，这也是写这篇文章的原因。&lt;br&gt;教务系统是使用c#和asp，因此想要模仿提交亲环球得先对正常的包进行分析。首先看一下整个抓包的数据流，如下：&lt;br&gt;&lt;img src=&quot;../image/抓包数据流.png&quot; alt=&quot;抓包数据流&quot;&gt;　&lt;br&gt;串“dDwyODE2NTM0OTg7Oz5LUCaVfG1Oi%2BQaOSKH9UZrpjfn1w%3D%3D”，其中跟明显可以看到“%2B”和“%3D%3D”这两段比较特殊的字串，这个可以用工具进行反编译就能很容易得到源字符串“dDwyODE2NTM0OTg7Oz5LUCaVfG1Oi+QaOSKH9UZrpjfn1w==”，和这个串对应的属性是”__VIEWSTATE”，在设置头部是注意添加。&lt;br&gt;&lt;img src=&quot;../image/设置头部字段.png&quot; alt=&quot;设置头部字段&quot;&gt;　&lt;br&gt;后面的”UserName”和”TextBox2”还有“textSecreCode”分别对应着“用户名”和“密码”还有“验证码”，这几个比较正常的字段和容易分析。&lt;br&gt;　　后面跟着的RadioButtonList1这个很明显可以看出来是编码后的串“%D1%A7%C9%FA”，但是我用工具解码后看到了这个“ѧ��”，顿时无语了，虽然可以肯定是个身份类别的选项，也能猜出来是“学生”两个字，于是我就将字段值填写成“学生“进行提交，但是不对啊。不能反编译看出原始流，但是知道你它是用gb2312进行编码的，所以我直接反编译，将反编译的串，直接写进表单中就是这样：&lt;br&gt;抓包看到的第一个&lt;br&gt;&lt;img src=&quot;../image/模拟表单.png&quot; alt=&quot;模拟表单&quot;&gt;　&lt;br&gt;哈哈哈，问题解决了。后面的几个空字段不用研究，没有值，就赋值为空就行。&lt;br&gt;　　这个项目的技术点基本也就是上面三个。然后对登录结果进行分析，登录成功后，返回字段会后一个稳定出现的字符串“xs_main.aspx?xh=”,所以我将它最为匹配规则，但是一直得不到正常的结果，查了资料，但是没有结果，所以我把关键字段的长度减少一部分，惊奇的发现OK了，我再把字符串逐渐增长，发现最长只能是“xs_main.aspx?x”，再不能多一个字符。&lt;br&gt;&lt;img src=&quot;../image/返回值正则分析.png&quot; alt=&quot;返回值正则分析&quot;&gt;　&lt;br&gt;最后，链接远程数据库，修改数据。其实oracle数据库和MySQL数据库没有很大区别，对于嵌套在java项目里面的sql语句都是一样的。这里可以提醒一点，最好采用预编译的方式对sql语句进行预编译操作，可以防止sql注入攻击。&lt;br&gt;　　还有一点要说一下，在用response转发请求或者重定向之后，要在方法末尾添加return，不然在下次请求转发会报这样的错：java.lang.IllegalStateException: Cannot forward after response has been committed&lt;br&gt;　　项目源代码可以查看我的github：&lt;a href=&quot;https://github.com/PersonOFWorld/Servlet-ResetPassWord&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/PersonOFWorld/Servlet-ResetPassWord&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;第一个问题比较简单：通过CloseableHttpClient类的方法就可获取到验证码图片，然后保存在在服务器上。因为不是有必要，所以我拿到验证码图片后没有对它里面的内容做识别。&lt;br&gt;&lt;img src=&quot;../image/网络教学平台获得验证码.png&quot; alt=&quot;网络教学平台获得验证码&quot;&gt;　&lt;br&gt;第一步实现后，我发现在页面上只能把启动tomcat后第一次保存的验证码图片显示出来，这个可能是因为图片作为静态资源，我尝试了各种从页面获取图片的方式，最后采用图片在服务端用base64加密，将加密后的流返回到页面，用jQueryjQuery对流还原，显示图片，如下：&lt;br&gt;&lt;img src=&quot;../image/验证码图片传到页面.png&quot; alt=&quot;验证码图片传到页面&quot;&gt;　&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;p&gt;编码问题一直是程序员开发中很头疼的问题，尤其是中国的程序员会更有体会。前两天学校老师让给学校的其中一个平台上添加修改密码功能（不知道为啥，竟然没有找回密码的功能，只能叹服），问题是学校不能给提供教务系统的登陆接口，因此要验证账户的合法性，我需要用做模拟登陆，然后拿教务系统的
+      &lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;编码问题一直是程序员开发中很头疼的问题，尤其是中国的程序员会更有体会。前两天学校老师让给学校的其中一个平台上添加修改密码功能（不知道为啥，竟然没有找回密码的功能，只能叹服），问题是学校不能给提供教务系统的登陆接口，因此要验证账
     
     </summary>
     
@@ -49,7 +48,7 @@
     <link href="http://yoursite.com/2016/06/11/python%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%88%AC%E8%99%AB/"/>
     <id>http://yoursite.com/2016/06/11/python实现简单爬虫/</id>
     <published>2016-06-11T07:07:28.000Z</published>
-    <updated>2016-06-11T07:18:21.176Z</updated>
+    <updated>2016-06-11T08:25:24.628Z</updated>
     
     <content type="html">&lt;p&gt;现在网上的资源特别丰富，尤其是如果在看到某些网站上的好看的图片就会想要保存下来，但是很麻烦需要的一个一个点击下载，可是如果我们用程序来处理的话，问题将会变得非常简单，只需要运行程序就可以拿到整个网页上的所有图片。&lt;/p&gt;
 &lt;p&gt;　　下面我们可以看一下怎样用python实现一个简单的获取网页图片的的爬虫小程序。&lt;/p&gt;
@@ -65,7 +64,7 @@
 &lt;p&gt;　第三步：将符合规则的文件即图片保存到imglist中&lt;/p&gt;
 &lt;p&gt;　第四步：用urlretrieve（）方法保存图片到本地。其中第二个参数设置保存文件位置。&lt;/p&gt;
 &lt;p&gt;这样就可以实现一个python的一个简单的获取网页图片的爬虫&lt;/p&gt;
-&lt;p&gt;爬到的图片 ，如下：&lt;br&gt;&lt;img src=&quot;http://o8cmndmfu.bkt.clouddn.com/python_demo%E5%9B%BE%E9%9B%86%E7%A4%BA%E4%BE%8B.jpg&quot; alt=&quot;python爬虫示例图集&quot;&gt;　&lt;/p&gt;
+&lt;p&gt;爬到的图片 ，如下：&lt;br&gt;&lt;img src=&quot;../image/python_demo图集示例.jpg&quot; alt=&quot;python爬虫示例图集&quot;&gt;　&lt;/p&gt;
 </content>
     
     <summary type="html">
@@ -85,36 +84,34 @@
     <link href="http://yoursite.com/2016/06/11/hashMap/"/>
     <id>http://yoursite.com/2016/06/11/hashMap/</id>
     <published>2016-06-11T06:39:28.000Z</published>
-    <updated>2016-06-11T07:04:36.879Z</updated>
+    <updated>2016-06-11T08:28:27.447Z</updated>
     
-    <content type="html">&lt;p&gt;HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。&lt;br&gt;通过HashMap源码分析Hash存储机制。&lt;br&gt;首先简单了解一下HashMap的特点：&lt;/p&gt;
+    <content type="html">&lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。&lt;br&gt;通过HashMap源码分析Hash存储机制。&lt;br&gt;首先简单了解一下HashMap的特点：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;采用数组与链表结合的数据结构；用过数组和链表的朋友都对两者的特点很熟悉（或查看&lt;a href=&quot;http://localhost:4000/2016/06/11/array_and_List/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://localhost:4000/2016/06/11/array_and_List/&lt;/a&gt; ），但是为了将两者特点结合，所以某些方面不会比单独使用一个更高效。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;系统采用 Hash 算法决定集合元素的存储位置，这样可以保证能快速存、取集合元素；对于 HashMap 而言，系统 key-value 当成一个整体进行处理，系统总是根据 Hash 算法来计算 key-value 的存储位置，这样可以保证能快速存、取 Map 的 key-value 对。&lt;br&gt;接下来看一下源码：&lt;br&gt;成员变量：&lt;/p&gt;
+&lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;系统采用 Hash 算法决定集合元素的存储位置，这样可以保证能快速存、取集合元素；对于 HashMap 而言，系统 key-value 当成一个整体进行处理，系统总是根据 Hash 算法来计算 key-value 的存储位置，这样可以保证能快速存、取 Map 的 key-value 对。&lt;br&gt;接下来看一下源码：&lt;br&gt;成员变量：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;static final int DEFAULT_INITIAL_CAPACITY = 16;// 默认初始容量为16，必须为2的幂  &lt;/li&gt;
-&lt;li&gt;static final int MAXIMUM_CAPACITY = 1 &amp;lt;&amp;lt; 30;// 最大容量为2的30次方  &lt;/li&gt;
-&lt;li&gt;static final float DEFAULT_LOAD_FACTOR = 0.75f;// 默认加载因子0.75  &lt;/li&gt;
-&lt;li&gt;transient Entry&lt;k,v&gt;[] table;// Entry数组，哈希表，长度必须为2的幂  &lt;/k,v&gt;&lt;/li&gt;
+&lt;li&gt;static final int MAXIMUM_CAPACITY = 1 &amp;lt;&amp;lt; 30;// 最大容量为2的30次方&lt;/li&gt;
+&lt;li&gt;static final float DEFAULT_LOAD_FACTOR = 0.75f;// 默认加载因子0.75&lt;/li&gt;
+&lt;li&gt;transient Entry&lt;k,v&gt;[] table;// Entry数组，哈希表，长度必须为2的幂&lt;/k,v&gt;&lt;/li&gt;
 &lt;li&gt;transient int size;// 已存元素的个数  &lt;/li&gt;
 &lt;li&gt;int threshold;// 下次扩容的临界值，size&amp;gt;=threshold就会扩容  &lt;/li&gt;
 &lt;li&gt;final float loadFactor;// 加载因子&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h4 id=&quot;三种构造函数（实际上有四种，这里讨论其中三个）&quot;&gt;&lt;a href=&quot;#三种构造函数（实际上有四种，这里讨论其中三个）&quot; class=&quot;headerlink&quot; title=&quot;三种构造函数（实际上有四种，这里讨论其中三个）&quot;&gt;&lt;/a&gt;三种构造函数（实际上有四种，这里讨论其中三个）&lt;/h4&gt;&lt;ol&gt;
-&lt;li&gt;不传入参数负载因子和容量，采用默认值即bucket=16，load_factory=0.75实例化HashMap()&lt;br&gt;&lt;img src=&quot;http://o8cmndmfu.bkt.clouddn.com/1%E8%B4%9F%E8%BD%BD%E5%9B%A0%E5%AD%90.png&quot; alt=&quot;不传入参数负载因子和容量的构造函数&quot;&gt;　&lt;/li&gt;
+&lt;li&gt;不传入参数负载因子和容量，采用默认值即bucket=16，load_factory=0.75实例化HashMap()&lt;br&gt;&lt;img src=&quot;http://o8cmndmfu.bkt.clouddn.com/1%E8%B4%9F%E8%BD%BD%E5%9B%A0%E5%AD%90.png&quot; alt=&quot;不传入参数负载因子和容量的构造函数&quot;&gt;　&lt;br&gt;2、传入容量初始值，负载因子采用默认值，按此值实例化HashMap()&lt;br&gt;&lt;img src=&quot;http://o8cmndmfu.bkt.clouddn.com/%E5%88%9D%E5%A7%8B%E5%AE%B9%E9%87%8F%E5%80%BC.png&quot; alt=&quot;传入容量的构造函数&quot;&gt;&lt;br&gt;3、容量和负载因子都穿入初始值，须对参数值进行检测，容量值不得小于0，但也不能大于容量最大值，若大于最大值则按最大容量创建（2的30次方）；负载因子须大于0&lt;br&gt;&lt;img src=&quot;http://o8cmndmfu.bkt.clouddn.com/%E5%AE%B9%E9%87%8F%E5%80%BC%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9B%A0%E5%AD%90.png&quot; alt=&quot;传入参数负载因子和容量的构造函数&quot;&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;2、传入容量初始值，负载因子采用默认值，按此值实例化HashMap()&lt;br&gt;&lt;img src=&quot;http://o8cmndmfu.bkt.clouddn.com/%E5%88%9D%E5%A7%8B%E5%AE%B9%E9%87%8F%E5%80%BC.png&quot; alt=&quot;传入容量的构造函数&quot;&gt;&lt;/p&gt;
-&lt;p&gt;3、容量和负载因子都穿入初始值，须对参数值进行检测，容量值不得小于0，但也不能大于容量最大值，若大于最大值则按最大容量创建（2的30次方）；负载因子须大于0&lt;br&gt;&lt;img src=&quot;http://o8cmndmfu.bkt.clouddn.com/%E5%AE%B9%E9%87%8F%E5%80%BC%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9B%A0%E5%AD%90.png&quot; alt=&quot;传入参数负载因子和容量的构造函数&quot;&gt;&lt;/p&gt;
-&lt;p&gt;重点看一下第三个构造方法，以为都要调用它。我们可以看到看第181-183行代码，这里做了一个移位运算，保证了初始容量一定为2的幂，假如你传的是5，那么最终的初始容量为8。为什么HashMap容量一定要为2的幂呢？HashMap中的数据结构是数组+单链表的组合，我们希望的是元素存放的更均匀，最理想的效果是，Entry数组中每个位置都只有一个元素，这样，查询的时候效率最高，不需要遍历单链表，也不需要通过equals去比较Key，而且空间利用率最大。那如何计算才会分布最均匀呢？我们首先想到的就是%运算，哈希值%容量=bucketIndex，我们阅读一下这段源码：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://o8cmndmfu.bkt.clouddn.com/%E8%AE%A1%E7%AE%97%E6%A1%B6%E4%BD%8D%E7%BD%AE.png&quot; alt=&quot;不传入参数负载因子和容量的构造函数&quot;&gt;&lt;/p&gt;
-&lt;p&gt;很明显在这里用到了位运算，可是为什么不用%取余呢？当容量一定是2^n时，h &amp;amp; (length - 1) == h % length，它俩是等价不等效的，位运算首先要把数字转换成二进制数，然后与length（桶数量）进行与运算，但是这样做以人的思维来说是比较麻烦的，但是为什么要这样做呢？因为机器就只认识二进制码。（这里的 h 是通过key的hashcode最终计算出的哈希值，length是目前容量。）&lt;br&gt;一般加载因子设置为0,75，这可以说是一种折中的策略，如果加载因子过高加少了空间开销但是又会影响查询速度，过低又会导致扩容频繁，因为扩容的标志是桶占用个数=加载因子&lt;em&gt;容量。&lt;br&gt;那么扩容又是怎样的呢？&lt;br&gt;在需要扩容时，进行refresh，新容量=原容量&lt;/em&gt;2，然后根据key重新计算hashcode再重新散列，将原有数据重新放进新的hashmap中，完成扩容。&lt;br&gt;如何获取hashmap中存储的元素？看get（）方法&lt;br&gt;&lt;img src=&quot;http://o8cmndmfu.bkt.clouddn.com/getValue.png&quot; alt=&quot;不传入参数负载因子和容量的构造函数&quot;&gt;&lt;/p&gt;
-&lt;p&gt;在查询元素时将key传入作为参数，首先对key做判空处理，为空则调用getForNullKey()方法。&lt;/p&gt;
+&lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;重点看一下第三个构造方法，以为都要调用它。我们可以看到看第181-183行代码，这里做了一个移位运算，保证了初始容量一定为2的幂，假如你传的是5，那么最终的初始容量为8。为什么HashMap容量一定要为2的幂呢？HashMap中的数据结构是数组+单链表的组合，我们希望的是元素存放的更均匀，最理想的效果是，Entry数组中每个位置都只有一个元素，这样，查询的时候效率最高，不需要遍历单链表，也不需要通过equals去比较Key，而且空间利用率最大。那如何计算才会分布最均匀呢？我们首先想到的就是%运算，哈希值%容量=bucketIndex，我们阅读一下这段源码：&lt;br&gt;&lt;img src=&quot;http://o8cmndmfu.bkt.clouddn.com/%E8%AE%A1%E7%AE%97%E6%A1%B6%E4%BD%8D%E7%BD%AE.png&quot; alt=&quot;不传入参数负载因子和容量的构造函数&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;很明显在这里用到了位运算，可是为什么不用%取余呢？当容量一定是2^n时，h &amp;amp; (length - 1) == h % length，它俩是等价不等效的，位运算首先要把数字转换成二进制数，然后与length（桶数量）进行与运算，但是这样做以人的思维来说是比较麻烦的，但是为什么要这样做呢？因为机器就只认识二进制码。（这里的 h 是通过key的hashcode最终计算出的哈希值，length是目前容量。&lt;/p&gt;
+&lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;一般加载因子设置为0,75，这可以说是一种折中的策略，如果加载因子过高加少了空间开销但是又会影响查询速度，过低又会导致扩容频繁，因为扩容的标志是桶占用个数=加载因子&lt;em&gt;容量。&lt;br&gt;那么扩容又是怎样的呢？&lt;br&gt;在需要扩容时，进行refresh，新容量=原容量&lt;/em&gt;2，然后根据key重新计算hashcode再重新散列，将原有数据重新放进新的hashmap中，完成扩容。&lt;br&gt;如何获取hashmap中存储的元素？看get（）方法&lt;br&gt;&lt;img src=&quot;http://o8cmndmfu.bkt.clouddn.com/getValue.png&quot; alt=&quot;不传入参数负载因子和容量的构造函数&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;在查询元素时将key传入作为参数，首先对key做判空处理，为空则调用getForNullKey()方法。&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;p&gt;HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。&lt;br&gt;通过HashMap源码分析Hash存储机制。&lt;br&gt;首先简单了解一下HashMap的
+      &lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。&lt;br&gt;通过HashMap源码分析Hash存
     
     </summary>
     
@@ -156,26 +153,15 @@
   </entry>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2016/05/31/hello-world/"/>
-    <id>http://yoursite.com/2016/05/31/hello-world/</id>
-    <published>2016-05-31T05:33:39.612Z</published>
-    <updated>2016-05-31T05:33:39.612Z</updated>
+    <title>标签</title>
+    <link href="http://yoursite.com/2014/12/22/categories/"/>
+    <id>http://yoursite.com/2014/12/22/categories/</id>
+    <published>2014-12-22T04:39:04.000Z</published>
+    <updated>2016-06-11T08:33:38.588Z</updated>
     
-    <content type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/server.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Server&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Generate-static-files&quot;&gt;&lt;a href=&quot;#Generate-static-files&quot; class=&quot;headerlink&quot; title=&quot;Generate static files&quot;&gt;&lt;/a&gt;Generate static files&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo generate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/generating.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Generating&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Deploy-to-remote-sites&quot;&gt;&lt;a href=&quot;#Deploy-to-remote-sites&quot; class=&quot;headerlink&quot; title=&quot;Deploy to remote sites&quot;&gt;&lt;/a&gt;Deploy to remote sites&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo deploy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/deployment.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
-</content>
+    <content type="html"></content>
     
     <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
     
     </summary>
     

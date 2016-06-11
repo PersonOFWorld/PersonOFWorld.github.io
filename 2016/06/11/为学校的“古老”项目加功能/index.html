@@ -86,27 +86,31 @@
 
 
 
-<meta name="description" content="编码问题一直是程序员开发中很头疼的问题，尤其是中国的程序员会更有体会。前两天学校老师让给学校的其中一个平台上添加修改密码功能（不知道为啥，竟然没有找回密码的功能，只能叹服），问题是学校不能给提供教务系统的登陆接口，因此要验证账户的合法性，我需要用做模拟登陆，然后拿教务系统的验证结果。很明显有以下几个问题：
+<meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;编码问题一直是程序员开发中很头疼的问题，尤其是中国的程序员会更有体会。前两天学校老师让给学校的其中一个平台上添加修改密码功能（不知道为啥，竟然没有找回密码的功能，只能叹服），问题是学校不能给提供教务系统的登陆接口，因此要验证账户的合法性，我需要用做模拟登陆，然后拿教务系统的验证结果。很明显有以下几个问题：
 
-如何让教务系统的验证码显示在我的页面上？
-怎样保证提交验证码和账号时教务系统后台的验证码和">
+如何让教务系统的验证码显示在我的页面上？">
 <meta property="og:type" content="article">
 <meta property="og:title" content="为学校的“古老”项目加功能">
 <meta property="og:url" content="http://yoursite.com/2016/06/11/为学校的“古老”项目加功能/index.html">
 <meta property="og:site_name" content="Have A Rest">
-<meta property="og:description" content="编码问题一直是程序员开发中很头疼的问题，尤其是中国的程序员会更有体会。前两天学校老师让给学校的其中一个平台上添加修改密码功能（不知道为啥，竟然没有找回密码的功能，只能叹服），问题是学校不能给提供教务系统的登陆接口，因此要验证账户的合法性，我需要用做模拟登陆，然后拿教务系统的验证结果。很明显有以下几个问题：
+<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;编码问题一直是程序员开发中很头疼的问题，尤其是中国的程序员会更有体会。前两天学校老师让给学校的其中一个平台上添加修改密码功能（不知道为啥，竟然没有找回密码的功能，只能叹服），问题是学校不能给提供教务系统的登陆接口，因此要验证账户的合法性，我需要用做模拟登陆，然后拿教务系统的验证结果。很明显有以下几个问题：
 
-如何让教务系统的验证码显示在我的页面上？
-怎样保证提交验证码和账号时教务系统后台的验证码和">
+如何让教务系统的验证码显示在我的页面上？">
 <meta property="og:image" content="http://yoursite.com/../image/网络教学平台获得验证码.png">
 <meta property="og:image" content="http://yoursite.com/../image/验证码图片传到页面.png">
-<meta property="og:updated_time" content="2016-06-11T07:54:22.260Z">
+<meta property="og:image" content="http://yoursite.com/../image/验证码在页面还原.png">
+<meta property="og:image" content="http://yoursite.com/../image/保存cookie.png">
+<meta property="og:image" content="http://yoursite.com/../image/将保存的cooki写进http的头部.png">
+<meta property="og:image" content="http://yoursite.com/../image/抓包数据流.png">
+<meta property="og:image" content="http://yoursite.com/../image/设置头部字段.png">
+<meta property="og:image" content="http://yoursite.com/../image/模拟表单.png">
+<meta property="og:image" content="http://yoursite.com/../image/返回值正则分析.png">
+<meta property="og:updated_time" content="2016-06-11T08:31:48.673Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="为学校的“古老”项目加功能">
-<meta name="twitter:description" content="编码问题一直是程序员开发中很头疼的问题，尤其是中国的程序员会更有体会。前两天学校老师让给学校的其中一个平台上添加修改密码功能（不知道为啥，竟然没有找回密码的功能，只能叹服），问题是学校不能给提供教务系统的登陆接口，因此要验证账户的合法性，我需要用做模拟登陆，然后拿教务系统的验证结果。很明显有以下几个问题：
+<meta name="twitter:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;编码问题一直是程序员开发中很头疼的问题，尤其是中国的程序员会更有体会。前两天学校老师让给学校的其中一个平台上添加修改密码功能（不知道为啥，竟然没有找回密码的功能，只能叹服），问题是学校不能给提供教务系统的登陆接口，因此要验证账户的合法性，我需要用做模拟登陆，然后拿教务系统的验证结果。很明显有以下几个问题：
 
-如何让教务系统的验证码显示在我的页面上？
-怎样保证提交验证码和账号时教务系统后台的验证码和">
+如何让教务系统的验证码显示在我的页面上？">
 <meta name="twitter:image" content="http://yoursite.com/../image/网络教学平台获得验证码.png">
 
 
@@ -324,15 +328,14 @@
       
 
       
-        <p>编码问题一直是程序员开发中很头疼的问题，尤其是中国的程序员会更有体会。前两天学校老师让给学校的其中一个平台上添加修改密码功能（不知道为啥，竟然没有找回密码的功能，只能叹服），问题是学校不能给提供教务系统的登陆接口，因此要验证账户的合法性，我需要用做模拟登陆，然后拿教务系统的验证结果。很明显有以下几个问题：</p>
+        <p>&ensp;&ensp;&ensp;&ensp;编码问题一直是程序员开发中很头疼的问题，尤其是中国的程序员会更有体会。前两天学校老师让给学校的其中一个平台上添加修改密码功能（不知道为啥，竟然没有找回密码的功能，只能叹服），问题是学校不能给提供教务系统的登陆接口，因此要验证账户的合法性，我需要用做模拟登陆，然后拿教务系统的验证结果。很明显有以下几个问题：</p>
 <ol>
 <li>如何让教务系统的验证码显示在我的页面上？</li>
 <li>怎样保证提交验证码和账号时教务系统后台的验证码和我刚才获取到的一样？</li>
 <li>保证模拟提交的表单数据和页面正常提交一致。</li>
 <li>对登陆的结果进行分析。</li>
-<li>修改这个平台上的数据库用户数据。</li>
+<li>修改这个平台上的数据库用户数据。<br>&ensp;&ensp;&ensp;&ensp;第一个问题比较简单：通过CloseableHttpClient类的方法就可获取到验证码图片，然后保存在在服务器上。因为不是有必要，所以我拿到验证码图片后没有对它里面的内容做识别。<br><img src="../image/网络教学平台获得验证码.png" alt="网络教学平台获得验证码">　<br>&ensp;&ensp;第一步实现后，我发现在页面上只能把启动tomcat后第一次保存的验证码图片显示出来，这个可能是因为图片作为静态资源，我尝试了各种从页面获取图片的方式，最后采用图片在服务端用base64加密，将加密后的流返回到页面，用jQueryjQuery对流还原，显示图片，如下：<br><img src="../image/验证码图片传到页面.png" alt="验证码图片传到页面">　服务端base64加密<br><img src="../image/验证码在页面还原.png" alt="验证码在页面还原">页面进行base64解密<br>&ensp;&ensp;&ensp;&ensp;第二个问题如果开发者对http你叫熟悉的话很容易想到解决办法，就是保存请求时的会话cookie，然后在下次提交登陆信息时将cookie写进hppt请求的头，然后再发起请求，这样就能保证前后两次请求是在同一次会话，验证码也就不会失效。<br><img src="../image/保存cookie.png" alt="保存cookie">保存cookie<br><img src="../image/将保存的cooki写进http的头部.png" alt="将保存的cooki写进http的头部">　将保存的cooki写进http的头部<br>&ensp;&ensp;&ensp;&ensp;这里我将hppt的头部内容都进行了补写，因为这是一个模拟请求，不是浏览器发起的请求，所以尽量将内容写完整，更像是一个真正的http请求，以免被服务器拒绝。<br>　　其实第三个问题花的时间能多一点，这也是写这篇文章的原因。<br>教务系统是使用c#和asp，因此想要模仿提交亲环球得先对正常的包进行分析。首先看一下整个抓包的数据流，如下：<br><img src="../image/抓包数据流.png" alt="抓包数据流">　<br>串“dDwyODE2NTM0OTg7Oz5LUCaVfG1Oi%2BQaOSKH9UZrpjfn1w%3D%3D”，其中跟明显可以看到“%2B”和“%3D%3D”这两段比较特殊的字串，这个可以用工具进行反编译就能很容易得到源字符串“dDwyODE2NTM0OTg7Oz5LUCaVfG1Oi+QaOSKH9UZrpjfn1w==”，和这个串对应的属性是”__VIEWSTATE”，在设置头部是注意添加。<br><img src="../image/设置头部字段.png" alt="设置头部字段">　<br>后面的”UserName”和”TextBox2”还有“textSecreCode”分别对应着“用户名”和“密码”还有“验证码”，这几个比较正常的字段和容易分析。<br>　　后面跟着的RadioButtonList1这个很明显可以看出来是编码后的串“%D1%A7%C9%FA”，但是我用工具解码后看到了这个“ѧ��”，顿时无语了，虽然可以肯定是个身份类别的选项，也能猜出来是“学生”两个字，于是我就将字段值填写成“学生“进行提交，但是不对啊。不能反编译看出原始流，但是知道你它是用gb2312进行编码的，所以我直接反编译，将反编译的串，直接写进表单中就是这样：<br>抓包看到的第一个<br><img src="../image/模拟表单.png" alt="模拟表单">　<br>哈哈哈，问题解决了。后面的几个空字段不用研究，没有值，就赋值为空就行。<br>　　这个项目的技术点基本也就是上面三个。然后对登录结果进行分析，登录成功后，返回字段会后一个稳定出现的字符串“xs_main.aspx?xh=”,所以我将它最为匹配规则，但是一直得不到正常的结果，查了资料，但是没有结果，所以我把关键字段的长度减少一部分，惊奇的发现OK了，我再把字符串逐渐增长，发现最长只能是“xs_main.aspx?x”，再不能多一个字符。<br><img src="../image/返回值正则分析.png" alt="返回值正则分析">　<br>最后，链接远程数据库，修改数据。其实oracle数据库和MySQL数据库没有很大区别，对于嵌套在java项目里面的sql语句都是一样的。这里可以提醒一点，最好采用预编译的方式对sql语句进行预编译操作，可以防止sql注入攻击。<br>　　还有一点要说一下，在用response转发请求或者重定向之后，要在方法末尾添加return，不然在下次请求转发会报这样的错：java.lang.IllegalStateException: Cannot forward after response has been committed<br>　　项目源代码可以查看我的github：<a href="https://github.com/PersonOFWorld/Servlet-ResetPassWord" target="_blank" rel="external">https://github.com/PersonOFWorld/Servlet-ResetPassWord</a></li>
 </ol>
-<p>第一个问题比较简单：通过CloseableHttpClient类的方法就可获取到验证码图片，然后保存在在服务器上。因为不是有必要，所以我拿到验证码图片后没有对它里面的内容做识别。<br><img src="../image/网络教学平台获得验证码.png" alt="网络教学平台获得验证码">　<br>第一步实现后，我发现在页面上只能把启动tomcat后第一次保存的验证码图片显示出来，这个可能是因为图片作为静态资源，我尝试了各种从页面获取图片的方式，最后采用图片在服务端用base64加密，将加密后的流返回到页面，用jQueryjQuery对流还原，显示图片，如下：<br><img src="../image/验证码图片传到页面.png" alt="验证码图片传到页面">　</p>
 
       
     </div>
