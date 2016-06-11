@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-06T16:00:59.618Z</updated>
+  <updated>2016-06-10T16:16:54.633Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,17 +16,19 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>标签</title>
+    <title>分类测试文章</title>
     <link href="http://yoursite.com/2016/06/06/page/"/>
     <id>http://yoursite.com/2016/06/06/page/</id>
     <published>2016-06-06T15:39:28.000Z</published>
-    <updated>2016-06-06T16:00:59.618Z</updated>
+    <updated>2016-06-10T16:16:54.633Z</updated>
     
     <content type="html"></content>
     
     <summary type="html">
     
     </summary>
+    
+      <category term="Testing" scheme="http://yoursite.com/categories/Testing/"/>
     
     
   </entry>
