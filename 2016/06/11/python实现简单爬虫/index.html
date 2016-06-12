@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="python,爬虫," />
 
 
 
@@ -99,7 +99,7 @@ urllib12345678910 def">
 一、第一步，怎样获取到整个page？getPage.py
 urllib12345678910 def">
 <meta property="og:image" content="http://yoursite.com/../image/python_demo图集示例.jpg">
-<meta property="og:updated_time" content="2016-06-11T08:25:24.628Z">
+<meta property="og:updated_time" content="2016-06-12T09:39:40.747Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python实现简单爬虫">
 <meta name="twitter:description" content="现在网上的资源特别丰富，尤其是如果在看到某些网站上的好看的图片就会想要保存下来，但是很麻烦需要的一个一个点击下载，可是如果我们用程序来处理的话，问题将会变得非常简单，只需要运行程序就可以拿到整个网页上的所有图片。
@@ -187,26 +187,6 @@ urllib12345678910 def">
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
@@ -223,6 +203,16 @@ urllib12345678910 def">
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -282,25 +272,6 @@ urllib12345678910 def">
           </span>
 
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python-爬虫/" itemprop="url" rel="index">
-                    <span itemprop="name">python,爬虫</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
 
           
             
@@ -325,10 +296,10 @@ urllib12345678910 def">
       
         <p>现在网上的资源特别丰富，尤其是如果在看到某些网站上的好看的图片就会想要保存下来，但是很麻烦需要的一个一个点击下载，可是如果我们用程序来处理的话，问题将会变得非常简单，只需要运行程序就可以拿到整个网页上的所有图片。</p>
 <p>　　下面我们可以看一下怎样用python实现一个简单的获取网页图片的的爬虫小程序。</p>
-<p>一、第一步，怎样获取到整个page？<br>getPage.py</p>
+<h2 id="一、第一步，怎样获取到整个page？"><a href="#一、第一步，怎样获取到整个page？" class="headerlink" title="一、第一步，怎样获取到整个page？"></a>一、第一步，怎样获取到整个page？</h2><p>getPage.py</p>
 <figure class="highlight plain"><figcaption><span>urllib</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">def getPage(url):</span><br><span class="line"></span><br><span class="line">    page = urllib.urlopen(url)</span><br><span class="line"></span><br><span class="line">    content = page.read()</span><br><span class="line"></span><br><span class="line">    return content</span><br><span class="line"> </span><br><span class="line">content = getPage(&quot;http://tieba.baidu.com/p/2510089409&quot;)</span><br></pre></td></tr></table></figure>
-<p>首先要导入urllib模块，此模块的作用是帮助我们通过url打开任意资源<br>urlopen(url, [,data])——根据url打开一个网页，根据参数区分post或者get<br>read()：读取整个页面所有信息<br>二、如何只获取到图片？</p>
-<p>savePhotos.py<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import urllib</span><br><span class="line">import re</span><br><span class="line"> </span><br><span class="line">def getPage(url):</span><br><span class="line">    page = urllib.urlopen(url)</span><br><span class="line">    content = page.read()</span><br><span class="line">    return content</span><br><span class="line"> </span><br><span class="line">def getPhotos(content):</span><br><span class="line">    reg = r&apos;src=&quot;(.+?\.jpg)&quot; pic_ext&apos;</span><br><span class="line">    imgre = re.compile(reg)</span><br><span class="line">    imglist = re.findall(imgre,content)</span><br><span class="line">    x = 0</span><br><span class="line">    for imgurl in imglist:</span><br><span class="line">        urllib.urlretrieve(imgurl,&apos;./photos/%s.jpg&apos; % x)</span><br><span class="line">        x+=1</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">content = getPage(&quot;http://tieba.baidu.com/p/2510089409&quot;)</span><br><span class="line"> </span><br><span class="line">print getPhotos(content)</span><br></pre></td></tr></table></figure></p>
+<p>首先要导入urllib模块，此模块的作用是帮助我们通过url打开任意资源<br>urlopen(url, [,data])——根据url打开一个网页，根据参数区分post或者get<br>read()：读取整个页面所有信息</p>
+<h2 id="二、如何只获取到图片？"><a href="#二、如何只获取到图片？" class="headerlink" title="二、如何只获取到图片？"></a>二、如何只获取到图片？</h2><p>savePhotos.py<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import urllib</span><br><span class="line">import re</span><br><span class="line"> </span><br><span class="line">def getPage(url):</span><br><span class="line">    page = urllib.urlopen(url)</span><br><span class="line">    content = page.read()</span><br><span class="line">    return content</span><br><span class="line"> </span><br><span class="line">def getPhotos(content):</span><br><span class="line">    reg = r&apos;src=&quot;(.+?\.jpg)&quot; pic_ext&apos;</span><br><span class="line">    imgre = re.compile(reg)</span><br><span class="line">    imglist = re.findall(imgre,content)</span><br><span class="line">    x = 0</span><br><span class="line">    for imgurl in imglist:</span><br><span class="line">        urllib.urlretrieve(imgurl,&apos;./photos/%s.jpg&apos; % x)</span><br><span class="line">        x+=1</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">content = getPage(&quot;http://tieba.baidu.com/p/2510089409&quot;)</span><br><span class="line"> </span><br><span class="line">print getPhotos(content)</span><br></pre></td></tr></table></figure></p>
 <p>正则表达式。这里我们用正则表达式来对获取到的网页信息进行过滤。</p>
 <p>　导入urllib和re模块</p>
 <p>　解析方法getPhotos.py中的语句</p>
@@ -356,6 +327,14 @@ urllib12345678910 def">
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+            <a href="/tags/爬虫/" rel="tag">#爬虫</a>
+          
+        </div>
       
 
       
@@ -446,14 +425,14 @@ urllib12345678910 def">
           </div>
 
           
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">分类</span>
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
               </a>
             </div>
-          
-
           
 
         </nav>
@@ -524,7 +503,7 @@ urllib12345678910 def">
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、第一步，怎样获取到整个page？"><span class="nav-number">1.</span> <span class="nav-text">一、第一步，怎样获取到整个page？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、如何只获取到图片？"><span class="nav-number">2.</span> <span class="nav-text">二、如何只获取到图片？</span></a></li></ol></div>
             
           </div>
         </section>
