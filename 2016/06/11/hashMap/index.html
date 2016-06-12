@@ -40,9 +40,6 @@
   
 
   
-    
-    
-  
 
   
 
@@ -52,10 +49,6 @@
 
   
 
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -68,7 +61,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="hashMap,集合,java," />
+  <meta name="keywords" content="java,hashMap,集合," />
 
 
 
@@ -86,27 +79,30 @@
 
 
 
-<meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。通过HashMap源码分析Hash存储机制。首先简单了解一下HashMap的特点：
+<meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。
+通过HashMap源码分析Hash存储机制。首先简单了解一下HashMap的特点：
 
-采用数组与链表结合的数据结构；用过数组和链表的朋友都对两者的特点很熟悉（或查看htt">
+采用数组与链表结合的数据结构；用过数组和链表的朋友都对两者的特点很熟悉（或查看ht">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅析HashMap">
 <meta property="og:url" content="http://yoursite.com/2016/06/11/hashMap/index.html">
 <meta property="og:site_name" content="Have A Rest">
-<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。通过HashMap源码分析Hash存储机制。首先简单了解一下HashMap的特点：
+<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。
+通过HashMap源码分析Hash存储机制。首先简单了解一下HashMap的特点：
 
-采用数组与链表结合的数据结构；用过数组和链表的朋友都对两者的特点很熟悉（或查看htt">
+采用数组与链表结合的数据结构；用过数组和链表的朋友都对两者的特点很熟悉（或查看ht">
 <meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/1%E8%B4%9F%E8%BD%BD%E5%9B%A0%E5%AD%90.png">
 <meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/%E5%88%9D%E5%A7%8B%E5%AE%B9%E9%87%8F%E5%80%BC.png">
 <meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/%E5%AE%B9%E9%87%8F%E5%80%BC%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9B%A0%E5%AD%90.png">
 <meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/%E8%AE%A1%E7%AE%97%E6%A1%B6%E4%BD%8D%E7%BD%AE.png">
 <meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/getValue.png">
-<meta property="og:updated_time" content="2016-06-12T09:34:23.782Z">
+<meta property="og:updated_time" content="2016-06-12T15:17:27.128Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅析HashMap">
-<meta name="twitter:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。通过HashMap源码分析Hash存储机制。首先简单了解一下HashMap的特点：
+<meta name="twitter:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。
+通过HashMap源码分析Hash存储机制。首先简单了解一下HashMap的特点：
 
-采用数组与链表结合的数据结构；用过数组和链表的朋友都对两者的特点很熟悉（或查看htt">
+采用数组与链表结合的数据结构；用过数组和链表的朋友都对两者的特点很熟悉（或查看ht">
 <meta name="twitter:image" content="http://o8cmndmfu.bkt.clouddn.com/1%E8%B4%9F%E8%BD%BD%E5%9B%A0%E5%AD%90.png">
 
 
@@ -295,10 +291,12 @@
       
 
       
-        <p>&ensp;&ensp;&ensp;&ensp;HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。<br>通过HashMap源码分析Hash存储机制。<br>首先简单了解一下HashMap的特点：</p>
+        <p>&ensp;&ensp;&ensp;&ensp;HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。</p>
+<p>通过HashMap源码分析Hash存储机制。<br>首先简单了解一下HashMap的特点：</p>
 <blockquote>
-<p>采用数组与链表结合的数据结构；用过数组和链表的朋友都对两者的特点很熟悉（或查看<a href="http://localhost:4000/2016/06/11/array_and_List/" target="_blank" rel="external">http://localhost:4000/2016/06/11/array_and_List/</a> ），但是为了将两者特点结合，所以某些方面不会比单独使用一个更高效。</p>
+<p>采用数组与链表结合的数据结构；用过数组和链表的朋友都对两者的特点很熟悉（或查看<a href="http://blog.with0.me/2016/06/11/array_and_List/" target="_blank" rel="external">http://blog.with0.me/2016/06/11/array_and_List/</a> ），但是为了将两者特点结合，所以某些方面不会比单独使用一个更高效。</p>
 </blockquote>
+<a id="more"></a>
 <p>&ensp;&ensp;&ensp;&ensp;系统采用 Hash 算法决定集合元素的存储位置，这样可以保证能快速存、取集合元素；对于 HashMap 而言，系统 key-value 当成一个整体进行处理，系统总是根据 Hash 算法来计算 key-value 的存储位置，这样可以保证能快速存、取 Map 的 key-value 对。<br>接下来看一下源码：<br>成员变量：</p>
 <ol>
 <li>static final int DEFAULT_INITIAL_CAPACITY = 16;// 默认初始容量为16，必须为2的幂  </li>
@@ -337,11 +335,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/java/" rel="tag">#java</a>
+          
             <a href="/tags/hashMap/" rel="tag">#hashMap</a>
           
             <a href="/tags/集合/" rel="tag">#集合</a>
-          
-            <a href="/tags/java/" rel="tag">#java</a>
           
         </div>
       
@@ -358,8 +356,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/06/11/python实现简单爬虫/" rel="prev" title="python实现简单爬虫">
-                python实现简单爬虫 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/06/11/python实现简单爬虫/" rel="prev" title="Python实现简单爬虫">
+                Python实现简单爬虫 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -428,7 +426,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

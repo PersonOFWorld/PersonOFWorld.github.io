@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-12T09:39:12.982Z</updated>
+  <updated>2016-06-12T15:15:32.829Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,10 +20,12 @@
     <link href="http://yoursite.com/2016/06/11/%E4%B8%BA%E5%AD%A6%E6%A0%A1%E7%9A%84%E2%80%9C%E5%8F%A4%E8%80%81%E2%80%9D%E9%A1%B9%E7%9B%AE%E5%8A%A0%E5%8A%9F%E8%83%BD/"/>
     <id>http://yoursite.com/2016/06/11/为学校的“古老”项目加功能/</id>
     <published>2016-06-11T07:20:28.000Z</published>
-    <updated>2016-06-12T09:39:12.982Z</updated>
+    <updated>2016-06-12T15:15:32.829Z</updated>
     
     <content type="html">&lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;编码问题一直是程序员开发中很头疼的问题，尤其是中国的程序员会更有体会。前两天学校老师让给学校的其中一个平台上添加修改密码功能（不知道为啥，竟然没有找回密码的功能，只能叹服），问题是学校不能给提供教务系统的登陆接口，因此要验证账户的合法性，我需要用做模拟登陆，然后拿教务系统的验证结果。很明显有以下几个问题：&lt;/p&gt;
-&lt;h2 id=&quot;1-如何让教务系统的验证码显示在我的页面上？&quot;&gt;&lt;a href=&quot;#1-如何让教务系统的验证码显示在我的页面上？&quot; class=&quot;headerlink&quot; title=&quot;1. 如何让教务系统的验证码显示在我的页面上？&quot;&gt;&lt;/a&gt;1. 如何让教务系统的验证码显示在我的页面上？&lt;/h2&gt;&lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;第一个问题比较简单：通过CloseableHttpClient类的方法就可获取到验证码图片，然后保存在在服务器上。因为不是有必要，所以我拿到验证码图片后没有对它里面的内容做识别。&lt;br&gt;&lt;img src=&quot;../image/网络教学平台获得验证码.png&quot; alt=&quot;网络教学平台获得验证码&quot;&gt;　&lt;br&gt;&amp;ensp;&amp;ensp;第一步实现后，我发现在页面上只能把启动tomcat后第一次保存的验证码图片显示出来，这个可能是因为图片作为静态资源，我尝试了各种从页面获取图片的方式，最后采用图片在服务端用base64加密，将加密后的流返回到页面，用jQueryjQuery对流还原，显示图片，如下：&lt;br&gt;&lt;img src=&quot;../image/验证码图片传到页面.png&quot; alt=&quot;验证码图片传到页面&quot;&gt;　服务端base64加密&lt;br&gt;&lt;img src=&quot;../image/验证码在页面还原.png&quot; alt=&quot;验证码在页面还原&quot;&gt;页面进行base64解密&lt;/p&gt;
+&lt;h2 id=&quot;1-如何让教务系统的验证码显示在我的页面上？&quot;&gt;&lt;a href=&quot;#1-如何让教务系统的验证码显示在我的页面上？&quot; class=&quot;headerlink&quot; title=&quot;1. 如何让教务系统的验证码显示在我的页面上？&quot;&gt;&lt;/a&gt;1. 如何让教务系统的验证码显示在我的页面上？&lt;/h2&gt;&lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;第一个问题比较简单：通过CloseableHttpClient类的方法就可获取到验证码图片，然后保存在在服务器上。因为不是有必要，所以我拿&lt;br&gt;到验证码图片后没有对它里面的内容做识别。&lt;br&gt;&lt;img src=&quot;../image/网络教学平台获得验证码.png&quot; alt=&quot;网络教学平台获得验证码&quot;&gt;　&lt;br&gt;&amp;ensp;&amp;ensp;第一步实现后，我发现在页面上只能把启动tomcat后第一次保存的验证码图片显示出来，这个可能是因为图片作为静态资源，我尝试了各种从页面获取图片的方式，最后采用图片在服务端用base64加密，将加密后的流返回到页面，&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;用jQuery对流还原，显示图片，如下：&lt;br&gt;&lt;img src=&quot;../image/验证码图片传到页面.png&quot; alt=&quot;验证码图片传到页面&quot;&gt;　服务端base64加密&lt;br&gt;&lt;img src=&quot;../image/验证码在页面还原.png&quot; alt=&quot;验证码在页面还原&quot;&gt;页面进行base64解密&lt;/p&gt;
 &lt;h2 id=&quot;2-怎样保证提交验证码和账号时教务系统后台的验证码和我刚才获取到的一样？&quot;&gt;&lt;a href=&quot;#2-怎样保证提交验证码和账号时教务系统后台的验证码和我刚才获取到的一样？&quot; class=&quot;headerlink&quot; title=&quot;2. 怎样保证提交验证码和账号时教务系统后台的验证码和我刚才获取到的一样？&quot;&gt;&lt;/a&gt;2. 怎样保证提交验证码和账号时教务系统后台的验证码和我刚才获取到的一样？&lt;/h2&gt;&lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;第二个问题如果开发者对http你叫熟悉的话很容易想到解决办法，就是保存请求时的会话cookie，然后在下次提交登陆信息时将cookie写进hppt请求的头，然后再发起请求，这样就能保证前后两次请求是在同一次会话，验证码也就不会失效。&lt;br&gt;&lt;img src=&quot;../image/保存cookie.png&quot; alt=&quot;保存cookie&quot;&gt;保存cookie&lt;br&gt;&lt;img src=&quot;../image/将保存的cooki写进http的头部.png&quot; alt=&quot;将保存的cooki写进http的头部&quot;&gt;　将保存的cooki写进http的头部&lt;br&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;这里我将hppt的头部内容都进行了补写，因为这是一个模拟请求，不是浏览器发起的请求，所以尽量将内容写完整，更像是一个真正的http请求，以免被服务器拒绝。&lt;/p&gt;
 &lt;h2 id=&quot;3-保证模拟提交的表单数据和页面正常提交一致。&quot;&gt;&lt;a href=&quot;#3-保证模拟提交的表单数据和页面正常提交一致。&quot; class=&quot;headerlink&quot; title=&quot;3. 保证模拟提交的表单数据和页面正常提交一致。&quot;&gt;&lt;/a&gt;3. 保证模拟提交的表单数据和页面正常提交一致。&lt;/h2&gt;&lt;p&gt;　　其实第三个问题花的时间能多一点，这也是写这篇文章的原因。&lt;br&gt;教务系统是使用c#和asp，因此想要模仿提交亲环球得先对正常的包进行分析。首先看一下整个抓包的数据流，如下：&lt;br&gt;&lt;img src=&quot;../image/抓包数据流.png&quot; alt=&quot;抓包数据流&quot;&gt;　&lt;br&gt;串“dDwyODE2NTM0OTg7Oz5LUCaVfG1Oi%2BQaOSKH9UZrpjfn1w%3D%3D”，其中跟明显可以看到“%2B”和“%3D%3D”这两段比较特殊的字串，这个可以用工具进行反编译就能很容易得到源字符串“dDwyODE2NTM0OTg7Oz5LUCaVfG1Oi+QaOSKH9UZrpjfn1w==”，和这个串对应的属性是”__VIEWSTATE”，在设置头部是注意添加。&lt;br&gt;&lt;img src=&quot;../image/设置头部字段.png&quot; alt=&quot;设置头部字段&quot;&gt;　&lt;br&gt;后面的”UserName”和”TextBox2”还有“textSecreCode”分别对应着“用户名”和“密码”还有“验证码”，这几个比较正常的字段和容易分析。&lt;br&gt;　　后面跟着的RadioButtonList1这个很明显可以看出来是编码后的串“%D1%A7%C9%FA”，但是我用工具解码后看到了这个“ѧ��”，顿时无语了，虽然可以肯定是个身份类别的选项，也能猜出来是“学生”两个字，于是我就将字段值填写成“学生“进行提交，但是不对啊。不能反编译看出原始流，但是知道你它是用gb2312进行编码的，所以我直接反编译，将反编译的串，直接写进表单中就是这样：&lt;br&gt;抓包看到的第一个&lt;br&gt;&lt;img src=&quot;../image/模拟表单.png&quot; alt=&quot;模拟表单&quot;&gt;　&lt;/p&gt;
 &lt;h2 id=&quot;4-对登陆的结果进行分析。&quot;&gt;&lt;a href=&quot;#4-对登陆的结果进行分析。&quot; class=&quot;headerlink&quot; title=&quot;4. 对登陆的结果进行分析。&quot;&gt;&lt;/a&gt;4. 对登陆的结果进行分析。&lt;/h2&gt;&lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;哈哈哈，问题解决了。后面的几个空字段不用研究，没有值，就赋值为空就行。&lt;br&gt;　　这个项目的技术点基本也就是上面三个。然后对登录结果进行分析，登录成功后，返回字段会后一个稳定出现的字符串“xs_main.aspx?xh=”,所以我将它最为匹配规则，但是一直得不到正常的结果，查了资料，但是没有结果，所以我把关键字段的长度减少一部分，惊奇的发现OK了，我再把字符串逐渐增长，发现最长只能是“xs_main.aspx?x”，再不能多一个字符。&lt;/p&gt;
@@ -34,14 +36,15 @@
     
     <summary type="html">
     
-      &lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;编码问题一直是程序员开发中很头疼的问题，尤其是中国的程序员会更有体会。前两天学校老师让给学校的其中一个平台上添加修改密码功能（不知道为啥，竟然没有找回密码的功能，只能叹服），问题是学校不能给提供教务系统的登陆接口，因此要验证账
+      &lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;编码问题一直是程序员开发中很头疼的问题，尤其是中国的程序员会更有体会。前两天学校老师让给学校的其中一个平台上添加修改密码功能（不知道为啥，竟然没有找回密码的功能，只能叹服），问题是学校不能给提供教务系统的登陆接口，因此要验证账户的合法性，我需要用做模拟登陆，然后拿教务系统的验证结果。很明显有以下几个问题：&lt;/p&gt;
+&lt;h2 id=&quot;1-如何让教务系统的验证码显示在我的页面上？&quot;&gt;&lt;a href=&quot;#1-如何让教务系统的验证码显示在我的页面上？&quot; class=&quot;headerlink&quot; title=&quot;1. 如何让教务系统的验证码显示在我的页面上？&quot;&gt;&lt;/a&gt;1. 如何让教务系统的验证码显示在我的页面上？&lt;/h2&gt;&lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;第一个问题比较简单：通过CloseableHttpClient类的方法就可获取到验证码图片，然后保存在在服务器上。因为不是有必要，所以我拿&lt;br&gt;到验证码图片后没有对它里面的内容做识别。&lt;br&gt;&lt;img src=&quot;../image/网络教学平台获得验证码.png&quot; alt=&quot;网络教学平台获得验证码&quot;&gt;　&lt;br&gt;&amp;ensp;&amp;ensp;第一步实现后，我发现在页面上只能把启动tomcat后第一次保存的验证码图片显示出来，这个可能是因为图片作为静态资源，我尝试了各种从页面获取图片的方式，最后采用图片在服务端用base64加密，将加密后的流返回到页面，&lt;/p&gt;
     
     </summary>
     
     
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
       <category term="http" scheme="http://yoursite.com/tags/http/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
     
       <category term="cookie" scheme="http://yoursite.com/tags/cookie/"/>
     
@@ -50,16 +53,17 @@
   </entry>
   
   <entry>
-    <title>python实现简单爬虫</title>
+    <title>Python实现简单爬虫</title>
     <link href="http://yoursite.com/2016/06/11/python%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%88%AC%E8%99%AB/"/>
     <id>http://yoursite.com/2016/06/11/python实现简单爬虫/</id>
     <published>2016-06-11T07:07:28.000Z</published>
-    <updated>2016-06-12T09:39:40.747Z</updated>
+    <updated>2016-06-12T15:14:15.980Z</updated>
     
     <content type="html">&lt;p&gt;现在网上的资源特别丰富，尤其是如果在看到某些网站上的好看的图片就会想要保存下来，但是很麻烦需要的一个一个点击下载，可是如果我们用程序来处理的话，问题将会变得非常简单，只需要运行程序就可以拿到整个网页上的所有图片。&lt;/p&gt;
 &lt;p&gt;　　下面我们可以看一下怎样用python实现一个简单的获取网页图片的的爬虫小程序。&lt;/p&gt;
 &lt;h2 id=&quot;一、第一步，怎样获取到整个page？&quot;&gt;&lt;a href=&quot;#一、第一步，怎样获取到整个page？&quot; class=&quot;headerlink&quot; title=&quot;一、第一步，怎样获取到整个page？&quot;&gt;&lt;/a&gt;一、第一步，怎样获取到整个page？&lt;/h2&gt;&lt;p&gt;getPage.py&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;figcaption&gt;&lt;span&gt;urllib&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;def getPage(url):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    page = urllib.urlopen(url)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    content = page.read()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return content&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;content = getPage(&amp;quot;http://tieba.baidu.com/p/2510089409&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;首先要导入urllib模块，此模块的作用是帮助我们通过url打开任意资源&lt;br&gt;urlopen(url, [,data])——根据url打开一个网页，根据参数区分post或者get&lt;br&gt;read()：读取整个页面所有信息&lt;/p&gt;
 &lt;h2 id=&quot;二、如何只获取到图片？&quot;&gt;&lt;a href=&quot;#二、如何只获取到图片？&quot; class=&quot;headerlink&quot; title=&quot;二、如何只获取到图片？&quot;&gt;&lt;/a&gt;二、如何只获取到图片？&lt;/h2&gt;&lt;p&gt;savePhotos.py&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;import urllib&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;import re&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;def getPage(url):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    page = urllib.urlopen(url)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    content = page.read()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return content&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;def getPhotos(content):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    reg = r&amp;apos;src=&amp;quot;(.+?\.jpg)&amp;quot; pic_ext&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    imgre = re.compile(reg)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    imglist = re.findall(imgre,content)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    x = 0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    for imgurl in imglist:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        urllib.urlretrieve(imgurl,&amp;apos;./photos/%s.jpg&amp;apos; % x)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        x+=1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;content = getPage(&amp;quot;http://tieba.baidu.com/p/2510089409&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print getPhotos(content)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;正则表达式。这里我们用正则表达式来对获取到的网页信息进行过滤。&lt;/p&gt;
@@ -76,7 +80,9 @@
     <summary type="html">
     
       &lt;p&gt;现在网上的资源特别丰富，尤其是如果在看到某些网站上的好看的图片就会想要保存下来，但是很麻烦需要的一个一个点击下载，可是如果我们用程序来处理的话，问题将会变得非常简单，只需要运行程序就可以拿到整个网页上的所有图片。&lt;/p&gt;
-&lt;p&gt;　　下面我们可以看一下怎样用python实现一
+&lt;p&gt;　　下面我们可以看一下怎样用python实现一个简单的获取网页图片的的爬虫小程序。&lt;/p&gt;
+&lt;h2 id=&quot;一、第一步，怎样获取到整个page？&quot;&gt;&lt;a href=&quot;#一、第一步，怎样获取到整个page？&quot; class=&quot;headerlink&quot; title=&quot;一、第一步，怎样获取到整个page？&quot;&gt;&lt;/a&gt;一、第一步，怎样获取到整个page？&lt;/h2&gt;&lt;p&gt;getPage.py&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;figcaption&gt;&lt;span&gt;urllib&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;def getPage(url):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    page = urllib.urlopen(url)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    content = page.read()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return content&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;content = getPage(&amp;quot;http://tieba.baidu.com/p/2510089409&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
@@ -92,12 +98,14 @@
     <link href="http://yoursite.com/2016/06/11/hashMap/"/>
     <id>http://yoursite.com/2016/06/11/hashMap/</id>
     <published>2016-06-11T06:39:28.000Z</published>
-    <updated>2016-06-12T09:34:23.782Z</updated>
+    <updated>2016-06-12T15:17:27.128Z</updated>
     
-    <content type="html">&lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。&lt;br&gt;通过HashMap源码分析Hash存储机制。&lt;br&gt;首先简单了解一下HashMap的特点：&lt;/p&gt;
+    <content type="html">&lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。&lt;/p&gt;
+&lt;p&gt;通过HashMap源码分析Hash存储机制。&lt;br&gt;首先简单了解一下HashMap的特点：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;采用数组与链表结合的数据结构；用过数组和链表的朋友都对两者的特点很熟悉（或查看&lt;a href=&quot;http://localhost:4000/2016/06/11/array_and_List/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://localhost:4000/2016/06/11/array_and_List/&lt;/a&gt; ），但是为了将两者特点结合，所以某些方面不会比单独使用一个更高效。&lt;/p&gt;
+&lt;p&gt;采用数组与链表结合的数据结构；用过数组和链表的朋友都对两者的特点很熟悉（或查看&lt;a href=&quot;http://blog.with0.me/2016/06/11/array_and_List/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.with0.me/2016/06/11/array_and_List/&lt;/a&gt; ），但是为了将两者特点结合，所以某些方面不会比单独使用一个更高效。&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;系统采用 Hash 算法决定集合元素的存储位置，这样可以保证能快速存、取集合元素；对于 HashMap 而言，系统 key-value 当成一个整体进行处理，系统总是根据 Hash 算法来计算 key-value 的存储位置，这样可以保证能快速存、取 Map 的 key-value 对。&lt;br&gt;接下来看一下源码：&lt;br&gt;成员变量：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;static final int DEFAULT_INITIAL_CAPACITY = 16;// 默认初始容量为16，必须为2的幂  &lt;/li&gt;
@@ -119,16 +127,20 @@
     
     <summary type="html">
     
-      &lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。&lt;br&gt;通过HashMap源码分析Hash存
+      &lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;HashMap和HashSet是Java Collection FrameWork中两个重要成员，并且底层Hash存储机制完全相同，可以说HashSet就是借助HashMap实现的。&lt;/p&gt;
+&lt;p&gt;通过HashMap源码分析Hash存储机制。&lt;br&gt;首先简单了解一下HashMap的特点：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;采用数组与链表结合的数据结构；用过数组和链表的朋友都对两者的特点很熟悉（或查看&lt;a href=&quot;http://blog.with0.me/2016/06/11/array_and_List/&quot;&gt;http://blog.with0.me/2016/06/11/array_and_List/&lt;/a&gt; ），但是为了将两者特点结合，所以某些方面不会比单独使用一个更高效。&lt;/p&gt;
+&lt;/blockquote&gt;
     
     </summary>
     
     
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
       <category term="hashMap" scheme="http://yoursite.com/tags/hashMap/"/>
     
       <category term="集合" scheme="http://yoursite.com/tags/%E9%9B%86%E5%90%88/"/>
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
     
   </entry>
   
@@ -163,22 +175,6 @@
       <category term="数组" scheme="http://yoursite.com/tags/%E6%95%B0%E7%BB%84/"/>
     
       <category term="链表" scheme="http://yoursite.com/tags/%E9%93%BE%E8%A1%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>标签</title>
-    <link href="http://yoursite.com/2014/12/22/categories/"/>
-    <id>http://yoursite.com/2014/12/22/categories/</id>
-    <published>2014-12-22T04:39:04.000Z</published>
-    <updated>2016-06-11T08:33:38.588Z</updated>
-    
-    <content type="html"></content>
-    
-    <summary type="html">
-    
-    </summary>
-    
     
   </entry>
   
