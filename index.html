@@ -378,7 +378,7 @@
 
       
         
-          <p>现在网上的资源特别丰富，尤其是如果在看到某些网站上的好看的图片就会想要保存下来，但是很麻烦需要的一个一个点击下载，可是如果我们用程序来处理的话，问题将会变得非常简单，只需要运行程序就可以拿到整个网页上的所有图片。</p>
+          <p>&ensp;&ensp;&ensp;&ensp;现在网上的资源特别丰富，尤其是如果在看到某些网站上的好看的图片就会想要保存下来，但是很麻烦需要的一个一个点击下载，可是如果我们用程序来处理的话，问题将会变得非常简单，只需要运行程序就可以拿到整个网页上的所有图片。</p>
 <p>　　下面我们可以看一下怎样用python实现一个简单的获取网页图片的的爬虫小程序。</p>
 <h2 id="一、第一步，怎样获取到整个page？"><a href="#一、第一步，怎样获取到整个page？" class="headerlink" title="一、第一步，怎样获取到整个page？"></a>一、第一步，怎样获取到整个page？</h2><p>getPage.py</p>
 <figure class="highlight plain"><figcaption><span>urllib</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">def getPage(url):</span><br><span class="line"></span><br><span class="line">    page = urllib.urlopen(url)</span><br><span class="line"></span><br><span class="line">    content = page.read()</span><br><span class="line"></span><br><span class="line">    return content</span><br><span class="line"> </span><br><span class="line">content = getPage(&quot;http://tieba.baidu.com/p/2510089409&quot;)</span><br></pre></td></tr></table></figure>
