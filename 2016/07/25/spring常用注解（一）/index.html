@@ -1,0 +1,631 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java,注解,spring," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Have A Rest" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="注解的基础知识&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;在看spring注解之前，我们先简单了解一下java注解相关的知识；在java EE5中引入了很多重要的东西，其中很重要的一点就是注解。它们可以提供完整的描述程序所需要的信息，而这些信息是无法用Java来表达的。注解的语法比较简单，除了@符号的使用之外，它基本与Java固有的语法一致。Java EE5内置了三种，定义在java.lang">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring常用注解（一）">
+<meta property="og:url" content="http://yoursite.com/2016/07/25/spring常用注解（一）/index.html">
+<meta property="og:site_name" content="Have A Rest">
+<meta property="og:description" content="注解的基础知识&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;在看spring注解之前，我们先简单了解一下java注解相关的知识；在java EE5中引入了很多重要的东西，其中很重要的一点就是注解。它们可以提供完整的描述程序所需要的信息，而这些信息是无法用Java来表达的。注解的语法比较简单，除了@符号的使用之外，它基本与Java固有的语法一致。Java EE5内置了三种，定义在java.lang">
+<meta property="og:updated_time" content="2016-07-25T15:03:26.263Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring常用注解（一）">
+<meta name="twitter:description" content="注解的基础知识&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;在看spring注解之前，我们先简单了解一下java注解相关的知识；在java EE5中引入了很多重要的东西，其中很重要的一点就是注解。它们可以提供完整的描述程序所需要的信息，而这些信息是无法用Java来表达的。注解的语法比较简单，除了@符号的使用之外，它基本与Java固有的语法一致。Java EE5内置了三种，定义在java.lang">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '青夜'
+    }
+  };
+</script>
+
+  <title> Spring常用注解（一） | Have A Rest </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Have A Rest</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Spring常用注解（一）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-25T22:11:27+08:00" content="2016-07-25">
+              2016-07-25
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="注解的基础知识"><a href="#注解的基础知识" class="headerlink" title="注解的基础知识"></a>注解的基础知识</h3><p>&ensp;&ensp;&ensp;&ensp;在看spring注解之前，我们先简单了解一下java注解相关的知识；在java EE5中引入了很多重要的东西，其中很重要的一点就是注解。它们可以提供完整的描述程序所需要的信息，而这些信息是无法用Java来表达的。注解的语法比较简单，除了@符号的使用之外，它基本与Java固有的语法一致。Java EE5内置了三种，定义在java.lang中的注解：</p>
+<p>@Averride,表示当前的方法定义将覆盖基类中的方法。如果出现拼写错误，或者签名和被覆盖方法不一致，编译器会发出错误提示。</p>
+<p>@Deprecated,如果使用了注解为它的元素，编译器会发出警告。</p>
+<p>@SupperssWarning,关闭不当的编译器警告信息。</p>
+<h3 id="spring的注解"><a href="#spring的注解" class="headerlink" title="spring的注解"></a>spring的注解</h3><p>&ensp;&ensp;&ensp;&ensp;我们都知道，spring框架提供xml文件的配置，也提供基于注解的方式实现配置任何的Bean实例。</p>
+<p>@Controller,它将该类标记为子控制器，DispatcherServlet类为主控制器，通过两级控制器，才能够将页面请求的数据送到相应的类去处理。</p>
+<p>@Service,标注一个业务逻辑组件类，通常是多层架构的Service层</p>
+<p>@Repository 标注一个DAO组件类，将Dao类声明为Bean，我们就不再需要在 XML 中显式使用 <bean> 进行Bean 的配置。Spring 在容器初始化时将自动扫描 base-package 指定的包及其子包下的所有 class文件，所有标注了 @Repository 的类都将被注册为 Spring Bean。</bean></p>
+<p>@RequestMapping,是一个用来处理请求地址映射的注解，可用于类或方法上。用于类上，表示类中的所有响应请求的方法都是以该地址作为父路径。@RequestMapping有六个参数：</p>
+<blockquote>
+<p>value，指定请求的实际地址；</p>
+<p>method指定请求的method类型；</p>
+<p>consumes指定处理请求的提交内容类型（Content-Type），例如application/json, text/html;</p>
+<p>produces:指定返回的内容类型，仅当request请求头中的(Accept)类型中包含该指定类型才返回；</p>
+<p>params：指定request中必须包含某些参数值是，才让该方法处理。</p>
+<p>headers：指定request中必须包含某些指定的header值，才能让该方法处理请求</p>
+</blockquote>
+<p>其中最常用的是前两个参数。后面的示例代码回有体现。</p>
+<p>@RequestBody,该注解常用来处理Content-Type: 不是application/x-www-form-urlencoded编码的内容，例如application/json, application/xml等；<br>它是通过使用HandlerAdapter 配置的HttpMessageConverters来解析post data body，然后绑定到相应的bean上的。因为配置有FormHttpMessageConverter，所以也可以用来处理 application/x-www-form-urlencoded的内容，处理完的结果放在一个MultiValueMap<string, string="">里，这种情况在某些特殊需求下使用，详情查看FormHttpMessageConverter api;</string,></p>
+<p>示例代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = &#123;<span class="string">"/api/student/&#123;id&#125;"</span> &#125;, method = RequestMethod.POST)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">post</span><span class="params">(@RequestBody @Valid InputObject&lt;Student&gt; data,BindingResult</span><br><span class="line">                   result,@PathVariable Long id,ModelMap model)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    Student student = data.getData();</span><br><span class="line">System.out.println(<span class="string">"传入数据 "</span>+ student);</span><br><span class="line"><span class="keyword">if</span>(result.hasErrors())</span><br><span class="line"><span class="keyword">return</span> <span class="string">"list"</span>;</span><br><span class="line">studentService.save(student);</span><br><span class="line">model.addAttribute(Constant.MESSAGE_DATA_KEY,student);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"list"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>此处路径命名方式为RestFul规则，此处暂不做介绍，后面或许会写一些文章。</p>
+<p>@Valid,这个注解在上面也有用到，它就是用来对表单进行简单验证，比如是否为空是否为正确格式什么的，都可以实现.<br>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Long id;</span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> Long <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> id;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Long id)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.id = id;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@NotBlank</span>(message = <span class="string">"validator.field.notblank"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样简单的方法，就可以检验name的值是否为空。</p>
+<p>@NotBlank,与之类似的注解有@NotEmpty和@NotNull</p>
+<p>@NotEmpty 用在集合类上面</p>
+<p>@NotBlank 用在String上面</p>
+<p>@NotNull    用在基本类型上</p>
+<p>@PathVariable,也出现在上面的方法中，当使用@RequestMapping URI template 样式映射时， 即 someUrl/{paramId}, 这时的paramId可通过 @Pathvariable注解绑定它传过来的值到方法的参数上。</p>
+<p>@RequestParam<br>使用这个注解可以代替request.getParameter(“inputInt”)直接获得参数的传值<br>@PathVariable和@RequestParam的区别就在于：@RequestParam用来获得静态的URL请求参数；@PathVariable用来获得动态的URL请求入参</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag">#java</a>
+          
+            <a href="/tags/注解/" rel="tag">#注解</a>
+          
+            <a href="/tags/spring/" rel="tag">#spring</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/16/JavaMail简单应用/" rel="next" title="JavaMail简单应用">
+                <i class="fa fa-chevron-left"></i> JavaMail简单应用
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://o8cmndmfu.bkt.clouddn.com/%E6%B5%B7%E8%B4%BC%E7%8E%8B.jpeg"
+               alt="王利涛" />
+          <p class="site-author-name" itemprop="name">王利涛</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/PersonOFWorld" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/sirius100785" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/withome" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/litao-wang" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#注解的基础知识"><span class="nav-number">1.</span> <span class="nav-text">注解的基础知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring的注解"><span class="nav-number">2.</span> <span class="nav-text">spring的注解</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王利涛</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

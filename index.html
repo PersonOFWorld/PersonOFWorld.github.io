@@ -238,6 +238,129 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/25/spring常用注解（一）/" itemprop="url">
+                  Spring常用注解（一）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-25T22:11:27+08:00" content="2016-07-25">
+              2016-07-25
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="注解的基础知识"><a href="#注解的基础知识" class="headerlink" title="注解的基础知识"></a>注解的基础知识</h3><p>&ensp;&ensp;&ensp;&ensp;在看spring注解之前，我们先简单了解一下java注解相关的知识；在java EE5中引入了很多重要的东西，其中很重要的一点就是注解。它们可以提供完整的描述程序所需要的信息，而这些信息是无法用Java来表达的。注解的语法比较简单，除了@符号的使用之外，它基本与Java固有的语法一致。Java EE5内置了三种，定义在java.lang中的注解：</p>
+<p>@Averride,表示当前的方法定义将覆盖基类中的方法。如果出现拼写错误，或者签名和被覆盖方法不一致，编译器会发出错误提示。</p>
+<p>@Deprecated,如果使用了注解为它的元素，编译器会发出警告。</p>
+<p>@SupperssWarning,关闭不当的编译器警告信息。</p>
+<h3 id="spring的注解"><a href="#spring的注解" class="headerlink" title="spring的注解"></a>spring的注解</h3><p>&ensp;&ensp;&ensp;&ensp;我们都知道，spring框架提供xml文件的配置，也提供基于注解的方式实现配置任何的Bean实例。</p>
+<p>@Controller,它将该类标记为子控制器，DispatcherServlet类为主控制器，通过两级控制器，才能够将页面请求的数据送到相应的类去处理。</p>
+<p>@Service,标注一个业务逻辑组件类，通常是多层架构的Service层</p>
+<p>@Repository 标注一个DAO组件类，将Dao类声明为Bean，我们就不再需要在 XML 中显式使用 <bean> 进行Bean 的配置。Spring 在容器初始化时将自动扫描 base-package 指定的包及其子包下的所有 class文件，所有标注了 @Repository 的类都将被注册为 Spring Bean。</bean></p>
+<p>@RequestMapping,是一个用来处理请求地址映射的注解，可用于类或方法上。用于类上，表示类中的所有响应请求的方法都是以该地址作为父路径。@RequestMapping有六个参数：</p>
+<blockquote>
+<p>value，指定请求的实际地址；</p>
+<p>method指定请求的method类型；</p>
+<p>consumes指定处理请求的提交内容类型（Content-Type），例如application/json, text/html;</p>
+<p>produces:指定返回的内容类型，仅当request请求头中的(Accept)类型中包含该指定类型才返回；</p>
+<p>params：指定request中必须包含某些参数值是，才让该方法处理。</p>
+<p>headers：指定request中必须包含某些指定的header值，才能让该方法处理请求</p>
+</blockquote>
+<p>其中最常用的是前两个参数。后面的示例代码回有体现。</p>
+<p>@RequestBody,该注解常用来处理Content-Type: 不是application/x-www-form-urlencoded编码的内容，例如application/json, application/xml等；<br>它是通过使用HandlerAdapter 配置的HttpMessageConverters来解析post data body，然后绑定到相应的bean上的。因为配置有FormHttpMessageConverter，所以也可以用来处理 application/x-www-form-urlencoded的内容，处理完的结果放在一个MultiValueMap<string, string="">里，这种情况在某些特殊需求下使用，详情查看FormHttpMessageConverter api;</string,></p>
+<p>示例代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = &#123;<span class="string">"/api/student/&#123;id&#125;"</span> &#125;, method = RequestMethod.POST)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">post</span><span class="params">(@RequestBody @Valid InputObject&lt;Student&gt; data,BindingResult</span><br><span class="line">                   result,@PathVariable Long id,ModelMap model)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    Student student = data.getData();</span><br><span class="line">System.out.println(<span class="string">"传入数据 "</span>+ student);</span><br><span class="line"><span class="keyword">if</span>(result.hasErrors())</span><br><span class="line"><span class="keyword">return</span> <span class="string">"list"</span>;</span><br><span class="line">studentService.save(student);</span><br><span class="line">model.addAttribute(Constant.MESSAGE_DATA_KEY,student);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"list"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>此处路径命名方式为RestFul规则，此处暂不做介绍，后面或许会写一些文章。</p>
+<p>@Valid,这个注解在上面也有用到，它就是用来对表单进行简单验证，比如是否为空是否为正确格式什么的，都可以实现.<br>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Long id;</span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> Long <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> id;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Long id)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.id = id;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@NotBlank</span>(message = <span class="string">"validator.field.notblank"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样简单的方法，就可以检验name的值是否为空。</p>
+<p>@NotBlank,与之类似的注解有@NotEmpty和@NotNull</p>
+<p>@NotEmpty 用在集合类上面</p>
+<p>@NotBlank 用在String上面</p>
+<p>@NotNull    用在基本类型上</p>
+<p>@PathVariable,也出现在上面的方法中，当使用@RequestMapping URI template 样式映射时， 即 someUrl/{paramId}, 这时的paramId可通过 @Pathvariable注解绑定它传过来的值到方法的参数上。</p>
+<p>@RequestParam<br>使用这个注解可以代替request.getParameter(“inputInt”)直接获得参数的传值<br>@PathVariable和@RequestParam的区别就在于：@RequestParam用来获得静态的URL请求参数；@PathVariable用来获得动态的URL请求入参</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/16/JavaMail简单应用/" itemprop="url">
                   JavaMail简单应用
                 </a>
@@ -614,114 +737,13 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/11/array_and_List/" itemprop="url">
-                  数组与链表对比分析
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-11T14:20:28+08:00" content="2016-06-11">
-              2016-06-11
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="数组存储方式采用线性结构，声明数组时需要声明类型，并且大小也会固定："><a href="#数组存储方式采用线性结构，声明数组时需要声明类型，并且大小也会固定：" class="headerlink" title="数组存储方式采用线性结构，声明数组时需要声明类型，并且大小也会固定："></a>数组存储方式采用线性结构，声明数组时需要声明类型，并且大小也会固定：</h2><h3 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h3><blockquote>
-<p>因此访问数组元素可根据数组下标随机访问，O(1).</p>
-</blockquote>
-<h3 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h3><blockquote>
-<p>大小固定，可能会造成空间浪费，或空间不够影响程序运行；<br>插入和删除元素却比较麻烦，可能需要移动部分数组元素以保证数组元素的物理位置保持连续。</p>
-</blockquote>
-<h2 id="链表采用链式存储结构，在声明时只需声明结构类型，："><a href="#链表采用链式存储结构，在声明时只需声明结构类型，：" class="headerlink" title="链表采用链式存储结构，在声明时只需声明结构类型，："></a>链表采用链式存储结构，在声明时只需声明结构类型，：</h2><h3 id="优点：-1"><a href="#优点：-1" class="headerlink" title="优点："></a>优点：</h3><blockquote>
-<p>链表大小在实际使用中可以动态增大和减小；<br>插入和删除操作就很方便，只需修改该元素节点邻接元素即可O(1).</p>
-</blockquote>
-<h3 id="缺点：-1"><a href="#缺点：-1" class="headerlink" title="缺点："></a>缺点：</h3><blockquote>
-<p>访问元素比较费时，需要逐个节点进行查看或能找到目标元素。</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -760,7 +782,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -770,7 +792,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

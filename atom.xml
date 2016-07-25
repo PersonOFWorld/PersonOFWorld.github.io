@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-15T21:48:39.752Z</updated>
+  <updated>2016-07-25T15:03:26.263Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,60 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring常用注解（一）</title>
+    <link href="http://yoursite.com/2016/07/25/spring%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://yoursite.com/2016/07/25/spring常用注解（一）/</id>
+    <published>2016-07-25T14:11:27.000Z</published>
+    <updated>2016-07-25T15:03:26.263Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;注解的基础知识&quot;&gt;&lt;a href=&quot;#注解的基础知识&quot; class=&quot;headerlink&quot; title=&quot;注解的基础知识&quot;&gt;&lt;/a&gt;注解的基础知识&lt;/h3&gt;&lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;在看spring注解之前，我们先简单了解一下java注解相关的知识；在java EE5中引入了很多重要的东西，其中很重要的一点就是注解。它们可以提供完整的描述程序所需要的信息，而这些信息是无法用Java来表达的。注解的语法比较简单，除了@符号的使用之外，它基本与Java固有的语法一致。Java EE5内置了三种，定义在java.lang中的注解：&lt;/p&gt;
+&lt;p&gt;@Averride,表示当前的方法定义将覆盖基类中的方法。如果出现拼写错误，或者签名和被覆盖方法不一致，编译器会发出错误提示。&lt;/p&gt;
+&lt;p&gt;@Deprecated,如果使用了注解为它的元素，编译器会发出警告。&lt;/p&gt;
+&lt;p&gt;@SupperssWarning,关闭不当的编译器警告信息。&lt;/p&gt;
+&lt;h3 id=&quot;spring的注解&quot;&gt;&lt;a href=&quot;#spring的注解&quot; class=&quot;headerlink&quot; title=&quot;spring的注解&quot;&gt;&lt;/a&gt;spring的注解&lt;/h3&gt;&lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;我们都知道，spring框架提供xml文件的配置，也提供基于注解的方式实现配置任何的Bean实例。&lt;/p&gt;
+&lt;p&gt;@Controller,它将该类标记为子控制器，DispatcherServlet类为主控制器，通过两级控制器，才能够将页面请求的数据送到相应的类去处理。&lt;/p&gt;
+&lt;p&gt;@Service,标注一个业务逻辑组件类，通常是多层架构的Service层&lt;/p&gt;
+&lt;p&gt;@Repository 标注一个DAO组件类，将Dao类声明为Bean，我们就不再需要在 XML 中显式使用 &lt;bean&gt; 进行Bean 的配置。Spring 在容器初始化时将自动扫描 base-package 指定的包及其子包下的所有 class文件，所有标注了 @Repository 的类都将被注册为 Spring Bean。&lt;/bean&gt;&lt;/p&gt;
+&lt;p&gt;@RequestMapping,是一个用来处理请求地址映射的注解，可用于类或方法上。用于类上，表示类中的所有响应请求的方法都是以该地址作为父路径。@RequestMapping有六个参数：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;value，指定请求的实际地址；&lt;/p&gt;
+&lt;p&gt;method指定请求的method类型；&lt;/p&gt;
+&lt;p&gt;consumes指定处理请求的提交内容类型（Content-Type），例如application/json, text/html;&lt;/p&gt;
+&lt;p&gt;produces:指定返回的内容类型，仅当request请求头中的(Accept)类型中包含该指定类型才返回；&lt;/p&gt;
+&lt;p&gt;params：指定request中必须包含某些参数值是，才让该方法处理。&lt;/p&gt;
+&lt;p&gt;headers：指定request中必须包含某些指定的header值，才能让该方法处理请求&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;其中最常用的是前两个参数。后面的示例代码回有体现。&lt;/p&gt;
+&lt;p&gt;@RequestBody,该注解常用来处理Content-Type: 不是application/x-www-form-urlencoded编码的内容，例如application/json, application/xml等；&lt;br&gt;它是通过使用HandlerAdapter 配置的HttpMessageConverters来解析post data body，然后绑定到相应的bean上的。因为配置有FormHttpMessageConverter，所以也可以用来处理 application/x-www-form-urlencoded的内容，处理完的结果放在一个MultiValueMap&lt;string, string=&quot;&quot;&gt;里，这种情况在某些特殊需求下使用，详情查看FormHttpMessageConverter api;&lt;/string,&gt;&lt;/p&gt;
+&lt;p&gt;示例代码：&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@RequestMapping&lt;/span&gt;(value = &amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;/api/student/&amp;#123;id&amp;#125;&quot;&lt;/span&gt; &amp;#125;, method = RequestMethod.POST)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; String &lt;span class=&quot;title&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(@RequestBody @Valid InputObject&amp;lt;Student&amp;gt; data,BindingResult&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                   result,@PathVariable Long id,ModelMap model)&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;throws&lt;/span&gt; Exception &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    Student student = data.getData();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;System.out.println(&lt;span class=&quot;string&quot;&gt;&quot;传入数据 &quot;&lt;/span&gt;+ student);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(result.hasErrors())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;list&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;studentService.save(student);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;model.addAttribute(Constant.MESSAGE_DATA_KEY,student);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;list&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;此处路径命名方式为RestFul规则，此处暂不做介绍，后面或许会写一些文章。&lt;/p&gt;
+&lt;p&gt;@Valid,这个注解在上面也有用到，它就是用来对表单进行简单验证，比如是否为空是否为正确格式什么的，都可以实现.&lt;br&gt;示例代码：&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; Long id;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;private&lt;/span&gt; String name;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; Long &lt;span class=&quot;title&quot;&gt;getId&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; id;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;setId&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Long id)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.id = id;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@NotBlank&lt;/span&gt;(message = &lt;span class=&quot;string&quot;&gt;&quot;validator.field.notblank&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; String &lt;span class=&quot;title&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; name;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;setName&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(String name)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.name = name;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这样简单的方法，就可以检验name的值是否为空。&lt;/p&gt;
+&lt;p&gt;@NotBlank,与之类似的注解有@NotEmpty和@NotNull&lt;/p&gt;
+&lt;p&gt;@NotEmpty 用在集合类上面&lt;/p&gt;
+&lt;p&gt;@NotBlank 用在String上面&lt;/p&gt;
+&lt;p&gt;@NotNull    用在基本类型上&lt;/p&gt;
+&lt;p&gt;@PathVariable,也出现在上面的方法中，当使用@RequestMapping URI template 样式映射时， 即 someUrl/{paramId}, 这时的paramId可通过 @Pathvariable注解绑定它传过来的值到方法的参数上。&lt;/p&gt;
+&lt;p&gt;@RequestParam&lt;br&gt;使用这个注解可以代替request.getParameter(“inputInt”)直接获得参数的传值&lt;br&gt;@PathVariable和@RequestParam的区别就在于：@RequestParam用来获得静态的URL请求参数；@PathVariable用来获得动态的URL请求入参&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;注解的基础知识&quot;&gt;&lt;a href=&quot;#注解的基础知识&quot; class=&quot;headerlink&quot; title=&quot;注解的基础知识&quot;&gt;&lt;/a&gt;注解的基础知识&lt;/h3&gt;&lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;在看spring注解之前，我们先简单了解一下java
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="注解" scheme="http://yoursite.com/tags/%E6%B3%A8%E8%A7%A3/"/>
+    
+      <category term="spring" scheme="http://yoursite.com/tags/spring/"/>
+    
+  </entry>
   
   <entry>
     <title>JavaMail简单应用</title>
@@ -167,11 +221,11 @@
     </summary>
     
     
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
       <category term="hashMap" scheme="http://yoursite.com/tags/hashMap/"/>
     
       <category term="集合" scheme="http://yoursite.com/tags/%E9%9B%86%E5%90%88/"/>
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
     
   </entry>
   
