@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-07-25T15:15:30.334Z</updated>
+  <updated>2016-07-27T13:52:31.085Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Spring常用注解（一）</title>
+    <title>Spring常用注解</title>
     <link href="http://yoursite.com/2016/07/25/spring%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>http://yoursite.com/2016/07/25/spring常用注解（一）/</id>
     <published>2016-07-25T14:11:27.000Z</published>
-    <updated>2016-07-25T15:15:30.334Z</updated>
+    <updated>2016-07-27T13:52:31.085Z</updated>
     
     <content type="html">&lt;h3 id=&quot;注解的基础知识&quot;&gt;&lt;a href=&quot;#注解的基础知识&quot; class=&quot;headerlink&quot; title=&quot;注解的基础知识&quot;&gt;&lt;/a&gt;注解的基础知识&lt;/h3&gt;&lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;在看spring注解之前，我们先简单了解一下java注解相关的知识；在java EE5中引入了很多重要的东西，其中很重要的一点就是注解。它们可以提供完整的描述程序所需要的信息，而这些信息是无法用Java来表达的。注解的语法比较简单，除了@符号的使用之外，它基本与Java固有的语法一致。Java EE5内置了三种，定义在java.lang中的注解：&lt;/p&gt;
 &lt;p&gt;@Averride,表示当前的方法定义将覆盖基类中的方法。如果出现拼写错误，或者签名和被覆盖方法不一致，编译器会发出错误提示。&lt;/p&gt;
