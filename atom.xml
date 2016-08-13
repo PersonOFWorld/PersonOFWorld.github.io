@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-08-13T14:46:18.792Z</updated>
+  <updated>2016-08-13T14:25:55.825Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,46 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>一个服务器配置主从Redis</title>
-    <link href="http://yoursite.com/2016/08/13/%E4%B8%80%E4%B8%AA%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE%E4%B8%BB%E4%BB%8ERedis/"/>
-    <id>http://yoursite.com/2016/08/13/一个服务器配置主从Redis/</id>
-    <published>2016-08-13T14:30:52.000Z</published>
-    <updated>2016-08-13T14:46:18.792Z</updated>
-    
-    <content type="html">&lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;之前用redis做过消息队列，只是用一个redis没有做过主从配置，最近在公司实习，因为考虑实际的宕机问题，所以看了相关的文章了解相关的配置方式，简单的记录下配置步骤。&lt;/p&gt;
-&lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;首先按照正常顺序解压两个redis源码包并进行安装，然后修改从库redis.conf文件，修改端口号：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://o8cmndmfu.bkt.clouddn.com/port.png&quot; alt=&quot;port&quot;&gt;&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;配置主从关系：&lt;img src=&quot;http://o8cmndmfu.bkt.clouddn.com/slaveof.png&quot; alt=&quot;slaveof&quot;&gt;&lt;/p&gt;
-&lt;p&gt;然后分别启动主从服务器，这里注意如果端口号不是默认的6379端口，在启动时要指定端口号。&lt;br&gt;然后测试，在主库进行添加数据：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://o8cmndmfu.bkt.clouddn.com/addData.png&quot; alt=&quot;addData&quot;&gt;&lt;/p&gt;
-&lt;p&gt;然后再从库查看数据是否已经同步；&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://o8cmndmfu.bkt.clouddn.com/getData.png&quot; alt=&quot;getData&quot;&gt;&lt;/p&gt;
-&lt;p&gt;这样就可以看到达到了预期的效果。&lt;br&gt;进入从库后可以通过info命令查看从库信息，其中会宝库主从库关系&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://o8cmndmfu.bkt.clouddn.com/info.png&quot; alt=&quot;info&quot;&gt;&lt;/p&gt;
-&lt;p&gt;这里我们可以看到主库的ip，端口号，还有是否正常同步，up代表正常同步，down说明同步异常&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://o8cmndmfu.bkt.clouddn.com/other.png&quot; alt=&quot;other&quot;&gt;&lt;/p&gt;
-&lt;p&gt;参数keys表示有几个key，以及过期key的数量&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;之前用redis做过消息队列，只是用一个redis没有做过主从配置，最近在公司实习，因为考虑实际的宕机问题，所以看了相关的文章了解相关的配置方式，简单的记录下配置步骤。&lt;/p&gt;
-&lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;首先按照正常顺序解压两个redis源码包并进行安装，然后修改从库redis.conf文件，修改端口号：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://o8cmndmfu.bkt.clouddn.com/port.png&quot; alt=&quot;port&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
-    
-      <category term="Centos" scheme="http://yoursite.com/tags/Centos/"/>
-    
-      <category term="Redis" scheme="http://yoursite.com/tags/Redis/"/>
-    
-  </entry>
   
   <entry>
     <title>一个服务器配置两个Tomcat</title>
@@ -301,11 +261,11 @@
     </summary>
     
     
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
       <category term="hashMap" scheme="http://yoursite.com/tags/hashMap/"/>
     
       <category term="集合" scheme="http://yoursite.com/tags/%E9%9B%86%E5%90%88/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
     
   </entry>
   
