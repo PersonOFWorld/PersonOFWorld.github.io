@@ -61,7 +61,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="python,爬虫," />
+  <meta name="keywords" content="Linux,Centos,Tomcat," />
 
 
 
@@ -79,24 +79,28 @@
 
 
 
-<meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;现在网上的资源特别丰富，尤其是如果在看到某些网站上的好看的图片就会想要保存下来，但是很麻烦需要的一个一个点击下载，可是如果我们用程序来处理的话，问题将会变得非常简单，只需要运行程序就可以拿到整个网页上的所有图片。
-　　下面我们可以看一下怎样用python实现一个简单的获取网页图片的的爬虫小程序。
-一、第一步，怎样获取到整个page？getPage.p">
+<meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;前段时间在看Ngins如何做负载均衡，但是我只有一个服务器，所以必须在一台服务器上搭两个tomcat，才能做一个简单的试验。在网上找了很多资料，但是很多说的不是很全面，有些细节可能博主觉得简单，就没有明确提出来，所以我把自己当时做的东西记录了一下，在这里做一个分享。
+&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;首先，下载Tomcat的安装文件，然">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python实现简单爬虫">
-<meta property="og:url" content="http://yoursite.com/2016/06/11/python实现简单爬虫/index.html">
+<meta property="og:title" content="一个服务器配置两个Tomcat">
+<meta property="og:url" content="http://yoursite.com/2016/08/13/一个服务器配置两个tomcat/index.html">
 <meta property="og:site_name" content="Have A Rest">
-<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;现在网上的资源特别丰富，尤其是如果在看到某些网站上的好看的图片就会想要保存下来，但是很麻烦需要的一个一个点击下载，可是如果我们用程序来处理的话，问题将会变得非常简单，只需要运行程序就可以拿到整个网页上的所有图片。
-　　下面我们可以看一下怎样用python实现一个简单的获取网页图片的的爬虫小程序。
-一、第一步，怎样获取到整个page？getPage.p">
-<meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/python_demo%E5%9B%BE%E9%9B%86%E7%A4%BA%E4%BE%8B.jpg">
-<meta property="og:updated_time" content="2016-06-15T21:17:14.601Z">
+<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;前段时间在看Ngins如何做负载均衡，但是我只有一个服务器，所以必须在一台服务器上搭两个tomcat，才能做一个简单的试验。在网上找了很多资料，但是很多说的不是很全面，有些细节可能博主觉得简单，就没有明确提出来，所以我把自己当时做的东西记录了一下，在这里做一个分享。
+&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;首先，下载Tomcat的安装文件，然">
+<meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6%E5%A4%B9.png">
+<meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/profile.png">
+<meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/startup.png">
+<meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/1.png">
+<meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/2.png">
+<meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/3.png">
+<meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/a.png">
+<meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/b.png">
+<meta property="og:updated_time" content="2016-08-13T14:25:55.825Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python实现简单爬虫">
-<meta name="twitter:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;现在网上的资源特别丰富，尤其是如果在看到某些网站上的好看的图片就会想要保存下来，但是很麻烦需要的一个一个点击下载，可是如果我们用程序来处理的话，问题将会变得非常简单，只需要运行程序就可以拿到整个网页上的所有图片。
-　　下面我们可以看一下怎样用python实现一个简单的获取网页图片的的爬虫小程序。
-一、第一步，怎样获取到整个page？getPage.p">
-<meta name="twitter:image" content="http://o8cmndmfu.bkt.clouddn.com/python_demo%E5%9B%BE%E9%9B%86%E7%A4%BA%E4%BE%8B.jpg">
+<meta name="twitter:title" content="一个服务器配置两个Tomcat">
+<meta name="twitter:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;前段时间在看Ngins如何做负载均衡，但是我只有一个服务器，所以必须在一台服务器上搭两个tomcat，才能做一个简单的试验。在网上找了很多资料，但是很多说的不是很全面，有些细节可能博主觉得简单，就没有明确提出来，所以我把自己当时做的东西记录了一下，在这里做一个分享。
+&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;首先，下载Tomcat的安装文件，然">
+<meta name="twitter:image" content="http://o8cmndmfu.bkt.clouddn.com/%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6%E5%A4%B9.png">
 
 
 
@@ -114,7 +118,7 @@
   };
 </script>
 
-  <title> Python实现简单爬虫 | Have A Rest </title>
+  <title> 一个服务器配置两个Tomcat | Have A Rest </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -244,7 +248,7 @@
             
             
               
-                Python实现简单爬虫
+                一个服务器配置两个Tomcat
               
             
           </h1>
@@ -256,8 +260,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-11T15:07:28+08:00" content="2016-06-11">
-              2016-06-11
+            <time itemprop="dateCreated" datetime="2016-08-13T22:08:28+08:00" content="2016-08-13">
+              2016-08-13
             </time>
           </span>
 
@@ -284,22 +288,13 @@
       
 
       
-        <p>&ensp;&ensp;&ensp;&ensp;现在网上的资源特别丰富，尤其是如果在看到某些网站上的好看的图片就会想要保存下来，但是很麻烦需要的一个一个点击下载，可是如果我们用程序来处理的话，问题将会变得非常简单，只需要运行程序就可以拿到整个网页上的所有图片。</p>
-<p>　　下面我们可以看一下怎样用python实现一个简单的获取网页图片的的爬虫小程序。</p>
-<h2 id="一、第一步，怎样获取到整个page？"><a href="#一、第一步，怎样获取到整个page？" class="headerlink" title="一、第一步，怎样获取到整个page？"></a>一、第一步，怎样获取到整个page？</h2><p>getPage.py</p>
-<figure class="highlight plain"><figcaption><span>urllib</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">def getPage(url):</span><br><span class="line"></span><br><span class="line">    page = urllib.urlopen(url)</span><br><span class="line"></span><br><span class="line">    content = page.read()</span><br><span class="line"></span><br><span class="line">    return content</span><br><span class="line"> </span><br><span class="line">content = getPage(&quot;http://tieba.baidu.com/p/2510089409&quot;)</span><br></pre></td></tr></table></figure>
+        <p>&ensp;&ensp;&ensp;&ensp;前段时间在看Ngins如何做负载均衡，但是我只有一个服务器，所以必须在一台服务器上搭两个tomcat，才能做一个简单的试验。在网上找了很多资料，但是很多说的不是很全面，有些细节可能博主觉得简单，就没有明确提出来，所以我把自己当时做的东西记录了一下，在这里做一个分享。</p>
+<p>&ensp;&ensp;&ensp;&ensp;首先，下载Tomcat的安装文件，然后分别解压到两个文件夹里面，然后改动其中一个tomcat配置文件的相关配置参数就可以了。</p>
 <a id="more"></a>
-<p>首先要导入urllib模块，此模块的作用是帮助我们通过url打开任意资源<br>urlopen(url, [,data])——根据url打开一个网页，根据参数区分post或者get<br>read()：读取整个页面所有信息</p>
-<h2 id="二、如何只获取到图片？"><a href="#二、如何只获取到图片？" class="headerlink" title="二、如何只获取到图片？"></a>二、如何只获取到图片？</h2><p>savePhotos.py<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import urllib</span><br><span class="line">import re</span><br><span class="line"> </span><br><span class="line">def getPage(url):</span><br><span class="line">    page = urllib.urlopen(url)</span><br><span class="line">    content = page.read()</span><br><span class="line">    return content</span><br><span class="line"> </span><br><span class="line">def getPhotos(content):</span><br><span class="line">    reg = r&apos;src=&quot;(.+?\.jpg)&quot; pic_ext&apos;</span><br><span class="line">    imgre = re.compile(reg)</span><br><span class="line">    imglist = re.findall(imgre,content)</span><br><span class="line">    x = 0</span><br><span class="line">    for imgurl in imglist:</span><br><span class="line">        urllib.urlretrieve(imgurl,&apos;./photos/%s.jpg&apos; % x)</span><br><span class="line">        x+=1</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">content = getPage(&quot;http://tieba.baidu.com/p/2510089409&quot;)</span><br><span class="line"> </span><br><span class="line">print getPhotos(content)</span><br></pre></td></tr></table></figure></p>
-<p>正则表达式。这里我们用正则表达式来对获取到的网页信息进行过滤。</p>
-<p>　导入urllib和re模块</p>
-<p>　解析方法getPhotos.py中的语句</p>
-<p>　第一步：创建正则表达式的过滤规则；</p>
-<p>　第二步：编译正则表达式</p>
-<p>　第三步：将符合规则的文件即图片保存到imglist中</p>
-<p>　第四步：用urlretrieve（）方法保存图片到本地。其中第二个参数设置保存文件位置。</p>
-<p>这样就可以实现一个python的一个简单的获取网页图片的爬虫</p>
-<p>爬到的图片 ，如下：<br><img src="http://o8cmndmfu.bkt.clouddn.com/python_demo%E5%9B%BE%E9%9B%86%E7%A4%BA%E4%BE%8B.jpg" alt="python爬虫示例图集">　</p>
+<p><img src="http://o8cmndmfu.bkt.clouddn.com/%E4%B8%A4%E4%B8%AA%E6%96%87%E4%BB%B6%E5%A4%B9.png" alt="两个文件夹">　<br>&ensp;&ensp;&ensp;&ensp;第一步，修改profile文件，添加两个tomcat的信息在文件里面<img src="http://o8cmndmfu.bkt.clouddn.com/profile.png" alt="profile">　</p>
+<p>第一部分是我配置的jdk，<br>中间注释的两句是我之前配置一个tomcat的配置信息，注意看一下#First tomcat和#Second tomcat这两部分就可以。</p>
+<p>&ensp;&ensp;&ensp;&ensp;第三步，然第三部修改tomcat7.2的startup.sh和shutdown.sh添加如下信息<br><img src="http://o8cmndmfu.bkt.clouddn.com/startup.png" alt="startup">　<br>&ensp;&ensp;&ensp;&ensp;最后一步，修改tomcat7.2的server.xml文件，只需要修改如下三处<br><img src="http://o8cmndmfu.bkt.clouddn.com/1.png" alt="1">　<br><img src="http://o8cmndmfu.bkt.clouddn.com/2.png" alt="2">　<br><img src="http://o8cmndmfu.bkt.clouddn.com/3.png" alt="3">　</p>
+<p>&ensp;&ensp;&ensp;&ensp;OK配置信息 已经修改完毕看看一下效果：<br><img src="http://o8cmndmfu.bkt.clouddn.com/a.png" alt="a">　<br><img src="http://o8cmndmfu.bkt.clouddn.com/b.png" alt="b">　<br>为了区别两个页面来自不同的tomcat我把tomcat7.2的index.jsp的部分内容删除了。<br>这样的话，简单的一个服务器配置两个tomcat就完成了。</p>
 
       
     </div>
@@ -321,9 +316,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag">#python</a>
+            <a href="/tags/Linux/" rel="tag">#Linux</a>
           
-            <a href="/tags/爬虫/" rel="tag">#爬虫</a>
+            <a href="/tags/Centos/" rel="tag">#Centos</a>
+          
+            <a href="/tags/Tomcat/" rel="tag">#Tomcat</a>
           
         </div>
       
@@ -332,16 +329,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/11/hashMap/" rel="next" title="浅析HashMap">
-                <i class="fa fa-chevron-left"></i> 浅析HashMap
+              <a href="/2016/07/25/spring常用注解（一）/" rel="next" title="Spring常用注解">
+                <i class="fa fa-chevron-left"></i> Spring常用注解
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/06/11/为学校的“古老”项目加功能/" rel="prev" title="为学校的“古老”项目加功能">
-                为学校的“古老”项目加功能 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/13/一个服务器配置主从Redis/" rel="prev" title="一个服务器配置主从Redis">
+                一个服务器配置主从Redis <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -494,7 +491,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、第一步，怎样获取到整个page？"><span class="nav-number">1.</span> <span class="nav-text">一、第一步，怎样获取到整个page？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、如何只获取到图片？"><span class="nav-number">2.</span> <span class="nav-text">二、如何只获取到图片？</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>

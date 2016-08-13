@@ -61,7 +61,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="python,爬虫," />
+  <meta name="keywords" content="Linux,Centos,Redis," />
 
 
 
@@ -79,24 +79,26 @@
 
 
 
-<meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;现在网上的资源特别丰富，尤其是如果在看到某些网站上的好看的图片就会想要保存下来，但是很麻烦需要的一个一个点击下载，可是如果我们用程序来处理的话，问题将会变得非常简单，只需要运行程序就可以拿到整个网页上的所有图片。
-　　下面我们可以看一下怎样用python实现一个简单的获取网页图片的的爬虫小程序。
-一、第一步，怎样获取到整个page？getPage.p">
+<meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;之前用redis做过消息队列，只是用一个redis没有做过主从配置，最近在公司实习，因为考虑实际的宕机问题，所以看了相关的文章了解相关的配置方式，简单的记录下配置步骤。
+&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;首先按照正常顺序解压两个redis源码包并进行安装，然后修改从库redis.conf文件，修改端口号：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python实现简单爬虫">
-<meta property="og:url" content="http://yoursite.com/2016/06/11/python实现简单爬虫/index.html">
+<meta property="og:title" content="一个服务器配置主从Redis">
+<meta property="og:url" content="http://yoursite.com/2016/08/13/一个服务器配置主从Redis/index.html">
 <meta property="og:site_name" content="Have A Rest">
-<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;现在网上的资源特别丰富，尤其是如果在看到某些网站上的好看的图片就会想要保存下来，但是很麻烦需要的一个一个点击下载，可是如果我们用程序来处理的话，问题将会变得非常简单，只需要运行程序就可以拿到整个网页上的所有图片。
-　　下面我们可以看一下怎样用python实现一个简单的获取网页图片的的爬虫小程序。
-一、第一步，怎样获取到整个page？getPage.p">
-<meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/python_demo%E5%9B%BE%E9%9B%86%E7%A4%BA%E4%BE%8B.jpg">
-<meta property="og:updated_time" content="2016-06-15T21:17:14.601Z">
+<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;之前用redis做过消息队列，只是用一个redis没有做过主从配置，最近在公司实习，因为考虑实际的宕机问题，所以看了相关的文章了解相关的配置方式，简单的记录下配置步骤。
+&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;首先按照正常顺序解压两个redis源码包并进行安装，然后修改从库redis.conf文件，修改端口号：">
+<meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/port.png">
+<meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/slaveof.png">
+<meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/addData.png">
+<meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/getData.png">
+<meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/info.png">
+<meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/other.png">
+<meta property="og:updated_time" content="2016-08-13T14:46:18.792Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python实现简单爬虫">
-<meta name="twitter:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;现在网上的资源特别丰富，尤其是如果在看到某些网站上的好看的图片就会想要保存下来，但是很麻烦需要的一个一个点击下载，可是如果我们用程序来处理的话，问题将会变得非常简单，只需要运行程序就可以拿到整个网页上的所有图片。
-　　下面我们可以看一下怎样用python实现一个简单的获取网页图片的的爬虫小程序。
-一、第一步，怎样获取到整个page？getPage.p">
-<meta name="twitter:image" content="http://o8cmndmfu.bkt.clouddn.com/python_demo%E5%9B%BE%E9%9B%86%E7%A4%BA%E4%BE%8B.jpg">
+<meta name="twitter:title" content="一个服务器配置主从Redis">
+<meta name="twitter:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;之前用redis做过消息队列，只是用一个redis没有做过主从配置，最近在公司实习，因为考虑实际的宕机问题，所以看了相关的文章了解相关的配置方式，简单的记录下配置步骤。
+&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;首先按照正常顺序解压两个redis源码包并进行安装，然后修改从库redis.conf文件，修改端口号：">
+<meta name="twitter:image" content="http://o8cmndmfu.bkt.clouddn.com/port.png">
 
 
 
@@ -114,7 +116,7 @@
   };
 </script>
 
-  <title> Python实现简单爬虫 | Have A Rest </title>
+  <title> 一个服务器配置主从Redis | Have A Rest </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -244,7 +246,7 @@
             
             
               
-                Python实现简单爬虫
+                一个服务器配置主从Redis
               
             
           </h1>
@@ -256,8 +258,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-11T15:07:28+08:00" content="2016-06-11">
-              2016-06-11
+            <time itemprop="dateCreated" datetime="2016-08-13T22:30:52+08:00" content="2016-08-13">
+              2016-08-13
             </time>
           </span>
 
@@ -284,22 +286,20 @@
       
 
       
-        <p>&ensp;&ensp;&ensp;&ensp;现在网上的资源特别丰富，尤其是如果在看到某些网站上的好看的图片就会想要保存下来，但是很麻烦需要的一个一个点击下载，可是如果我们用程序来处理的话，问题将会变得非常简单，只需要运行程序就可以拿到整个网页上的所有图片。</p>
-<p>　　下面我们可以看一下怎样用python实现一个简单的获取网页图片的的爬虫小程序。</p>
-<h2 id="一、第一步，怎样获取到整个page？"><a href="#一、第一步，怎样获取到整个page？" class="headerlink" title="一、第一步，怎样获取到整个page？"></a>一、第一步，怎样获取到整个page？</h2><p>getPage.py</p>
-<figure class="highlight plain"><figcaption><span>urllib</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">def getPage(url):</span><br><span class="line"></span><br><span class="line">    page = urllib.urlopen(url)</span><br><span class="line"></span><br><span class="line">    content = page.read()</span><br><span class="line"></span><br><span class="line">    return content</span><br><span class="line"> </span><br><span class="line">content = getPage(&quot;http://tieba.baidu.com/p/2510089409&quot;)</span><br></pre></td></tr></table></figure>
+        <p>&ensp;&ensp;&ensp;&ensp;之前用redis做过消息队列，只是用一个redis没有做过主从配置，最近在公司实习，因为考虑实际的宕机问题，所以看了相关的文章了解相关的配置方式，简单的记录下配置步骤。</p>
+<p>&ensp;&ensp;&ensp;&ensp;首先按照正常顺序解压两个redis源码包并进行安装，然后修改从库redis.conf文件，修改端口号：</p>
+<p><img src="http://o8cmndmfu.bkt.clouddn.com/port.png" alt="port"></p>
 <a id="more"></a>
-<p>首先要导入urllib模块，此模块的作用是帮助我们通过url打开任意资源<br>urlopen(url, [,data])——根据url打开一个网页，根据参数区分post或者get<br>read()：读取整个页面所有信息</p>
-<h2 id="二、如何只获取到图片？"><a href="#二、如何只获取到图片？" class="headerlink" title="二、如何只获取到图片？"></a>二、如何只获取到图片？</h2><p>savePhotos.py<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import urllib</span><br><span class="line">import re</span><br><span class="line"> </span><br><span class="line">def getPage(url):</span><br><span class="line">    page = urllib.urlopen(url)</span><br><span class="line">    content = page.read()</span><br><span class="line">    return content</span><br><span class="line"> </span><br><span class="line">def getPhotos(content):</span><br><span class="line">    reg = r&apos;src=&quot;(.+?\.jpg)&quot; pic_ext&apos;</span><br><span class="line">    imgre = re.compile(reg)</span><br><span class="line">    imglist = re.findall(imgre,content)</span><br><span class="line">    x = 0</span><br><span class="line">    for imgurl in imglist:</span><br><span class="line">        urllib.urlretrieve(imgurl,&apos;./photos/%s.jpg&apos; % x)</span><br><span class="line">        x+=1</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">content = getPage(&quot;http://tieba.baidu.com/p/2510089409&quot;)</span><br><span class="line"> </span><br><span class="line">print getPhotos(content)</span><br></pre></td></tr></table></figure></p>
-<p>正则表达式。这里我们用正则表达式来对获取到的网页信息进行过滤。</p>
-<p>　导入urllib和re模块</p>
-<p>　解析方法getPhotos.py中的语句</p>
-<p>　第一步：创建正则表达式的过滤规则；</p>
-<p>　第二步：编译正则表达式</p>
-<p>　第三步：将符合规则的文件即图片保存到imglist中</p>
-<p>　第四步：用urlretrieve（）方法保存图片到本地。其中第二个参数设置保存文件位置。</p>
-<p>这样就可以实现一个python的一个简单的获取网页图片的爬虫</p>
-<p>爬到的图片 ，如下：<br><img src="http://o8cmndmfu.bkt.clouddn.com/python_demo%E5%9B%BE%E9%9B%86%E7%A4%BA%E4%BE%8B.jpg" alt="python爬虫示例图集">　</p>
+<p>配置主从关系：<img src="http://o8cmndmfu.bkt.clouddn.com/slaveof.png" alt="slaveof"></p>
+<p>然后分别启动主从服务器，这里注意如果端口号不是默认的6379端口，在启动时要指定端口号。<br>然后测试，在主库进行添加数据：</p>
+<p><img src="http://o8cmndmfu.bkt.clouddn.com/addData.png" alt="addData"></p>
+<p>然后再从库查看数据是否已经同步；</p>
+<p><img src="http://o8cmndmfu.bkt.clouddn.com/getData.png" alt="getData"></p>
+<p>这样就可以看到达到了预期的效果。<br>进入从库后可以通过info命令查看从库信息，其中会宝库主从库关系</p>
+<p><img src="http://o8cmndmfu.bkt.clouddn.com/info.png" alt="info"></p>
+<p>这里我们可以看到主库的ip，端口号，还有是否正常同步，up代表正常同步，down说明同步异常</p>
+<p><img src="http://o8cmndmfu.bkt.clouddn.com/other.png" alt="other"></p>
+<p>参数keys表示有几个key，以及过期key的数量</p>
 
       
     </div>
@@ -321,9 +321,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag">#python</a>
+            <a href="/tags/Linux/" rel="tag">#Linux</a>
           
-            <a href="/tags/爬虫/" rel="tag">#爬虫</a>
+            <a href="/tags/Centos/" rel="tag">#Centos</a>
+          
+            <a href="/tags/Redis/" rel="tag">#Redis</a>
           
         </div>
       
@@ -332,17 +334,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/11/hashMap/" rel="next" title="浅析HashMap">
-                <i class="fa fa-chevron-left"></i> 浅析HashMap
+              <a href="/2016/08/13/一个服务器配置两个tomcat/" rel="next" title="一个服务器配置两个Tomcat">
+                <i class="fa fa-chevron-left"></i> 一个服务器配置两个Tomcat
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/06/11/为学校的“古老”项目加功能/" rel="prev" title="为学校的“古老”项目加功能">
-                为学校的“古老”项目加功能 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -494,7 +492,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、第一步，怎样获取到整个page？"><span class="nav-number">1.</span> <span class="nav-text">一、第一步，怎样获取到整个page？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、如何只获取到图片？"><span class="nav-number">2.</span> <span class="nav-text">二、如何只获取到图片？</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
