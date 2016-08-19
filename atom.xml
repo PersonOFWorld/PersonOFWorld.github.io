@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-08-19T14:31:47.096Z</updated>
+  <updated>2016-08-19T14:34:58.278Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,8 +19,8 @@
     <title>写一个关于Java和MySQL的小工具</title>
     <link href="http://yoursite.com/2016/08/19/%E5%86%99%E4%B8%80%E4%B8%AA%E5%85%B3%E4%BA%8EJava%E5%92%8CMySQL%E7%9A%84%E5%B0%8F%E5%B7%A5%E5%85%B7/"/>
     <id>http://yoursite.com/2016/08/19/写一个关于Java和MySQL的小工具/</id>
-    <published>2016-08-18T21:21:28.000Z</published>
-    <updated>2016-08-19T14:31:47.096Z</updated>
+    <published>2016-08-19T14:36:28.000Z</published>
+    <updated>2016-08-19T14:34:58.278Z</updated>
     
     <content type="html">&lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;看到一哥们在做项目是遇到了这样一个问题“需要用java读取Excle文件，而且要根据Excle文件的列名生成表，然后将表中的数据存储到对应的字段”，然后我想起了自己之前在做一个微信公众号的时候也遇到了类似的需求，似乎这样的一个工具类有点必要，在网上找了写文章，貌似写的不是很全，于是就整理了一些资料。首先说明一下，我这里的方案会在每次读取Excle是都会创建一个新的数据库和表，然后才会把表中的数据存入，而且这里有一个不太好的地方，就是在声明字段长度时会夸大考虑，这样我们在遇到比较长的字段内容时可以保证数据成功插入，但是在空间上会造成比较大的浪费，有好的建议可以一块讨论。&lt;/p&gt;
 &lt;p&gt;&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;先上代码。我们先来看一下关于读取文件的的方法。这里是关于Excle2010的操作方法，其他的版本需要做稍微的修改。&lt;/p&gt;
