@@ -61,7 +61,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="java,MySQL,Excle," />
 
 
 
@@ -79,15 +79,16 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Have A Rest">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;看到一哥们在做项目是遇到了这样一个问题“需要用java读取Excle文件，而且要根据Excle文件的列名生成表，然后将表中的数据存储到对应的字段”，然后我想起了自己之前在做一个微信公众号的时候也遇到了类似的需求，似乎这样的一个工具类有点必要，在网上找了写文章，貌似写的不是很全，于是就整理了一些资料。首先说明一下，我这里的方案会在每次读取Excle是都">
+<meta property="og:type" content="article">
+<meta property="og:title" content="写一个关于Java和MySQL的小工具">
+<meta property="og:url" content="http://yoursite.com/2016/08/19/写一个关于Java和MySQL的小工具/index.html">
 <meta property="og:site_name" content="Have A Rest">
-<meta property="og:description">
+<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;看到一哥们在做项目是遇到了这样一个问题“需要用java读取Excle文件，而且要根据Excle文件的列名生成表，然后将表中的数据存储到对应的字段”，然后我想起了自己之前在做一个微信公众号的时候也遇到了类似的需求，似乎这样的一个工具类有点必要，在网上找了写文章，貌似写的不是很全，于是就整理了一些资料。首先说明一下，我这里的方案会在每次读取Excle是都">
+<meta property="og:updated_time" content="2016-08-19T14:14:50.276Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Have A Rest">
-<meta name="twitter:description">
+<meta name="twitter:title" content="写一个关于Java和MySQL的小工具">
+<meta name="twitter:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;看到一哥们在做项目是遇到了这样一个问题“需要用java读取Excle文件，而且要根据Excle文件的列名生成表，然后将表中的数据存储到对应的字段”，然后我想起了自己之前在做一个微信公众号的时候也遇到了类似的需求，似乎这样的一个工具类有点必要，在网上找了写文章，貌似写的不是很全，于是就整理了一些资料。首先说明一下，我这里的方案会在每次读取Excle是都">
 
 
 
@@ -105,7 +106,7 @@
   };
 </script>
 
-  <title> Have A Rest </title>
+  <title> 写一个关于Java和MySQL的小工具 | Have A Rest </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -126,9 +127,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -215,9 +214,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -237,10 +236,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/08/19/写一个关于Java和MySQL的小工具/" itemprop="url">
-                  写一个关于Java和MySQL的小工具
-                </a>
+                写一个关于Java和MySQL的小工具
               
             
           </h1>
@@ -280,446 +276,68 @@
       
 
       
-        
-          
-            <p>&ensp;&ensp;&ensp;&ensp;看到一哥们在做项目是遇到了这样一个问题“需要用java读取Excle文件，而且要根据Excle文件的列名生成表，然后将表中的数据存储到对应的字段”，然后我想起了自己之前在做一个微信公众号的时候也遇到了类似的需求，似乎这样的一个工具类有点必要，在网上找了写文章，貌似写的不是很全，于是就整理了一些资料。首先说明一下，我这里的方案会在每次读取Excle是都会创建一个新的数据库和表，然后才会把表中的数据存入，而且这里有一个不太好的地方，就是在声明字段长度时会夸大考虑，这样我们在遇到比较长的字段内容时可以保证数据成功插入，但是在空间上会造成比较大的浪费，有好的建议可以一块讨论。</p>
+        <p>&ensp;&ensp;&ensp;&ensp;看到一哥们在做项目是遇到了这样一个问题“需要用java读取Excle文件，而且要根据Excle文件的列名生成表，然后将表中的数据存储到对应的字段”，然后我想起了自己之前在做一个微信公众号的时候也遇到了类似的需求，似乎这样的一个工具类有点必要，在网上找了写文章，貌似写的不是很全，于是就整理了一些资料。首先说明一下，我这里的方案会在每次读取Excle是都会创建一个新的数据库和表，然后才会把表中的数据存入，而且这里有一个不太好的地方，就是在声明字段长度时会夸大考虑，这样我们在遇到比较长的字段内容时可以保证数据成功插入，但是在空间上会造成比较大的浪费，有好的建议可以一块讨论。</p>
 <p>&ensp;&ensp;&ensp;&ensp;先上代码。我们先来看一下关于读取文件的的方法。这里是关于Excle2010的操作方法，其他的版本需要做稍微的修改。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.poi.xssf.usermodel.XSSFCell;</span><br><span class="line"><span class="keyword">import</span> org.apache.poi.xssf.usermodel.XSSFRow;</span><br><span class="line"><span class="keyword">import</span> org.apache.poi.xssf.usermodel.XSSFSheet;</span><br><span class="line"><span class="keyword">import</span> org.apache.poi.xssf.usermodel.XSSFWorkbook;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * Created by One on 2016/8/19.</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReadExcel</span> </span>&#123;</span><br><span class="line">    <span class="comment">//获得文件的名称，用这个名字来作为数据库的名字和表的名字</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getFileName</span><span class="params">(String path)</span></span>&#123;</span><br><span class="line">        File tempFile =<span class="keyword">new</span> File(path.trim());</span><br><span class="line">        <span class="keyword">return</span> tempFile.getName();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//得到一个XSSWorkbook类型的数据</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> XSSFWorkbook <span class="title">getXSSFWorkbook</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//声明输入流</span></span><br><span class="line">        InputStream is = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//打开文件流</span></span><br><span class="line">            is = <span class="keyword">new</span> FileInputStream(path);</span><br><span class="line">            <span class="comment">//读取文件流到XSSWorkbook类型</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> XSSFWorkbook(is);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//读取Excle表的字段，即就是得到所有的列，用这些名字来创建表字段</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">readExcelColumn</span><span class="params">(String path)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">//得到XSSWorkbook类型文件流</span></span><br><span class="line">        XSSFWorkbook xssfWorkbook = getXSSFWorkbook(path);</span><br><span class="line">        <span class="comment">//读取第一张表</span></span><br><span class="line">        XSSFSheet xssfSheet = xssfWorkbook.getSheetAt(<span class="number">0</span>);</span><br><span class="line">        <span class="comment">//读取第一行数据</span></span><br><span class="line">        XSSFRow row = xssfSheet.getRow(<span class="number">0</span>);</span><br><span class="line">        <span class="comment">//声明一个表格单元的数组</span></span><br><span class="line">        List&lt;String&gt; cellList = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        <span class="comment">//获取表的列数</span></span><br><span class="line">        <span class="keyword">int</span> columnNum = row.getLastCellNum();</span><br><span class="line">        <span class="comment">//保存每列的名称</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; columnNum; i++) &#123;</span><br><span class="line">            <span class="comment">//得到列名</span></span><br><span class="line">            cellList.add(String.valueOf(row.getCell(i).getStringCellValue()));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cellList;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//读取Excle中的数据</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ArrayList <span class="title">readExcleData</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//得到XSSWorkbook类型文件流</span></span><br><span class="line">        XSSFWorkbook xssfWorkbook = getXSSFWorkbook(path);</span><br><span class="line">        <span class="comment">//读取第一张表</span></span><br><span class="line">        XSSFSheet xssfSheet = xssfWorkbook.getSheetAt(<span class="number">0</span>);</span><br><span class="line">        <span class="comment">//因为表里面可能不止一行数据，所以初始化一个存放List类型数据的List，来保存每一行的数据集合</span></span><br><span class="line">        ArrayList&lt;List&gt; listcolumn = <span class="keyword">new</span> ArrayList&lt;List&gt;();</span><br><span class="line">        <span class="comment">// 读取表内容，以表的数量做为循环次数限制</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> numSheet = <span class="number">0</span>; numSheet &lt; xssfWorkbook.getNumberOfSheets(); numSheet++) &#123;</span><br><span class="line">            <span class="comment">//读取整张表</span></span><br><span class="line">            xssfSheet = xssfWorkbook.getSheetAt(numSheet);</span><br><span class="line">            <span class="comment">//判断是否含有数据</span></span><br><span class="line">            <span class="keyword">if</span> (xssfSheet == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//循环读取每一行的数据</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> rowNum = <span class="number">1</span>; rowNum &lt;= xssfSheet.getLastRowNum(); rowNum++) &#123;</span><br><span class="line">                <span class="comment">//获得整行数据</span></span><br><span class="line">                XSSFRow xssfRow = xssfSheet.getRow(rowNum);</span><br><span class="line">                <span class="comment">//初始化一个String类型的List，来保存每行的数据</span></span><br><span class="line">                List&lt;String&gt; listData = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">                <span class="comment">//行元素判空</span></span><br><span class="line">                <span class="keyword">if</span> (xssfRow != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="comment">//循环读取每一个表格里的数据</span></span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> column = <span class="number">0</span>; column &lt; xssfRow.getLastCellNum(); column++) &#123;</span><br><span class="line">                        XSSFCell data = xssfRow.getCell(column);</span><br><span class="line">                        <span class="comment">//转换成String类型，保存进list集合</span></span><br><span class="line">                        listData.add(String.valueOf(data));</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">//每行的数据集合，添加到表的list集合里面</span></span><br><span class="line">                    listcolumn.add(listData);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> listcolumn;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>&ensp;&ensp;&ensp;&ensp;下面是关于数据库的一些操作代码，注释写的比较清楚，这里就不啰嗦了，直接看代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.oracle.deploy.update.UpdateInfo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * Created by One on 2016/8/19.</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CreateDatabase</span> </span>&#123;</span><br><span class="line">    <span class="comment">//声明几个全局变量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String name=<span class="string">""</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String driverclassname;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String url;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String username;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String password;</span><br><span class="line">    <span class="comment">//静态语句块，加载properties文件，并给变量赋值</span></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            InputStream in = UpdateInfo.class.getClassLoader().getResourceAsStream(<span class="string">"db.properties"</span>);</span><br><span class="line">            Properties props = <span class="keyword">new</span> Properties();</span><br><span class="line">            props.load(in);</span><br><span class="line">            driverclassname = props.getProperty(<span class="string">"driverclassname"</span>);</span><br><span class="line">            url = props.getProperty(<span class="string">"url"</span>);</span><br><span class="line">            username = props.getProperty(<span class="string">"user"</span>);</span><br><span class="line">            password = props.getProperty(<span class="string">"password"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 这个方法用来创建数据库和表。</span><br><span class="line">     * 首先说一下这里的大概思路，我们在创建自己新的数据库之前，得先链接上数据库，</span><br><span class="line">     * 所以我们可以先链接任一数据库文件，然后再来创建自己的数据库。接着创建表和字段。</span><br><span class="line">     * <span class="doctag">@param</span> name</span><br><span class="line">     * <span class="doctag">@param</span> columnList</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">createDataBase</span><span class="params">(String name, List columnList)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建一个数据库连接</span></span><br><span class="line">        Connection con = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">// 创建预编译语句对象，一般都是用这个而不用Statement</span></span><br><span class="line">        PreparedStatement pre = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//强制JVM将com.mysql.jdbc.Driver这个类加载入内存，并将其注册到DriverManager类</span></span><br><span class="line">            Class.forName(driverclassname);</span><br><span class="line">            <span class="comment">// 获取连接</span></span><br><span class="line">            con = DriverManager.getConnection(url+<span class="string">"test"</span>, username, password);</span><br><span class="line">            <span class="comment">/**</span><br><span class="line">             * 创建表的说起来语句，但是这里要注意的是要注意在必要的地方加上空格，</span><br><span class="line">             * 以此保证sql语句可以通过编译，还有一个麻烦的地方就是如果要创建主键的话会稍微有点麻烦。</span><br><span class="line">             * 还有就是所有字段都是一个长度，会造成空间浪费</span><br><span class="line">             * 这里没有写，业务需要的时候，自己注意修改</span><br><span class="line">             */</span></span><br><span class="line">            String createTable=<span class="string">"create table "</span>+name+<span class="string">" ("</span>;</span><br><span class="line">            String limit= <span class="string">" varchar(100),"</span>;</span><br><span class="line">            String end=<span class="string">");"</span>;</span><br><span class="line">            <span class="keyword">for</span> (Object columnName : columnList)&#123;</span><br><span class="line">                createTable+=columnName+<span class="string">" "</span>+ limit;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">/**</span><br><span class="line">             * 因为上面的语句给每个字段后面都即使有逗号，但是在最后一个字段不需要逗号，要对它进行删除操作。</span><br><span class="line">             */</span></span><br><span class="line">            createTable=createTable.substring(<span class="number">0</span>,createTable.length()-<span class="number">1</span>);</span><br><span class="line">            createTable+=end;</span><br><span class="line">            <span class="comment">/**</span><br><span class="line">             * 创建数据库的sql语句，这个比创建表的语句要简单点。</span><br><span class="line">             */</span></span><br><span class="line">            String databaseSql = <span class="string">"create database "</span> + name+<span class="string">";"</span>;</span><br><span class="line">            <span class="comment">/**</span><br><span class="line">             * 最好对sql语句进行预编译，这样可以有效防止sql注入。</span><br><span class="line">             */</span></span><br><span class="line">            pre = con.prepareStatement(databaseSql);</span><br><span class="line">            pre.executeUpdate(databaseSql);</span><br><span class="line">            pre.close();</span><br><span class="line">            con.close();</span><br><span class="line">            <span class="comment">/**</span><br><span class="line">             * 这里链接刚才创建的数据库，后面才能在新的数据库中创建表</span><br><span class="line">             */</span></span><br><span class="line">            Connection newConn = DriverManager.getConnection(<span class="string">"jdbc:mysql://localhost/"</span> + name,username, password);</span><br><span class="line">            <span class="keyword">if</span> (newConn!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                pre =newConn.prepareStatement(createTable);</span><br><span class="line">                pre.executeUpdate(createTable);</span><br><span class="line">                pre.close();</span><br><span class="line">                newConn.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 将读取到的Excle表中的数据插入到数据库中。许多地方与上面类似，不再赘述。提醒一下，在创建sql语句时一定要注意格式。</span><br><span class="line">     * <span class="doctag">@param</span> listcolumn</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertData</span><span class="params">(ArrayList&lt;List&gt; listcolumn)</span></span>&#123;</span><br><span class="line">        Connection con = <span class="keyword">null</span>;</span><br><span class="line">        PreparedStatement pre = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Class.forName(driverclassname);<span class="comment">//</span></span><br><span class="line">            con = DriverManager.getConnection(url+name, username, password);<span class="comment">// 获取连接</span></span><br><span class="line">            <span class="keyword">for</span> (List column:listcolumn)&#123;</span><br><span class="line">                String dataSql=<span class="string">"insert into "</span>+name +<span class="string">" values ("</span>;</span><br><span class="line">                <span class="keyword">for</span> (Object data:column)&#123;</span><br><span class="line">                    dataSql+=<span class="string">"'"</span>+data.toString()+<span class="string">"'"</span>+<span class="string">","</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                dataSql=dataSql.substring(<span class="number">0</span>,dataSql.length()-<span class="number">1</span>);</span><br><span class="line">                dataSql+=<span class="string">");"</span>;</span><br><span class="line">                pre = con.prepareStatement(dataSql);</span><br><span class="line">                pre.executeUpdate(dataSql);</span><br><span class="line">            &#125;</span><br><span class="line">            pre.close();</span><br><span class="line">            con.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 下面写一个主方法，对以上的方法进行测试</span><br><span class="line">     * <span class="doctag">@param</span> args</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String file=<span class="string">"E://readExcle.xlsx"</span>;</span><br><span class="line">        List list = <span class="keyword">null</span>;</span><br><span class="line">        ReadExcel readExcel = <span class="keyword">new</span> ReadExcel();</span><br><span class="line">        <span class="comment">//获取文件的名字</span></span><br><span class="line">        name = readExcel.getFileName(file);</span><br><span class="line">        <span class="comment">//去掉文件的后缀名</span></span><br><span class="line">        name=name.substring(<span class="number">0</span>,name.indexOf(<span class="string">"."</span>));</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            list = readExcel.readExcelColumn(file);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        createDataBase(name,list);</span><br><span class="line">        ArrayList&lt;List&gt; listcolumn= readExcel.readExcleData(file);</span><br><span class="line">        insertData(listcolumn);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
 <p>&ensp;&ensp;&ensp;&ensp;这里的方案可能有些缺憾。每次都会创建一个新的数据库和表，然后将数据写入数据库，但是当我们要读取数据时，可能会有些麻烦，比如我们没有创建对应的Bean很难将从数据库读出的数据进行封装；但是java有动态代理，我们可以通过动态代理的方式，创建类的相应的属性，然后对字段进行封装。不对的地方，希望给出指正，共同学习。</p>
 <p>&ensp;&ensp;&ensp;&ensp;最后给出maven的依赖包<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- https://mvnrepository.com/artifact/org.apache.poi/poi --&gt;</span><br><span class="line">   &lt;dependency&gt;</span><br><span class="line">     &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;</span><br><span class="line">     &lt;artifactId&gt;poi&lt;/artifactId&gt;</span><br><span class="line">     &lt;version&gt;3.9&lt;/version&gt;</span><br><span class="line">   &lt;/dependency&gt;</span><br><span class="line">   &lt;dependency&gt;</span><br><span class="line">     &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;</span><br><span class="line">     &lt;artifactId&gt;poi-examples&lt;/artifactId&gt;</span><br><span class="line">     &lt;version&gt;3.9&lt;/version&gt;</span><br><span class="line">   &lt;/dependency&gt;</span><br><span class="line">   &lt;dependency&gt;</span><br><span class="line">     &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;</span><br><span class="line">     &lt;artifactId&gt;poi-excelant&lt;/artifactId&gt;</span><br><span class="line">     &lt;version&gt;3.9&lt;/version&gt;</span><br><span class="line">   &lt;/dependency&gt;</span><br><span class="line">   &lt;dependency&gt;</span><br><span class="line">     &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;</span><br><span class="line">     &lt;artifactId&gt;poi-ooxml&lt;/artifactId&gt;</span><br><span class="line">     &lt;version&gt;3.9&lt;/version&gt;</span><br><span class="line">   &lt;/dependency&gt;</span><br><span class="line">   &lt;dependency&gt;</span><br><span class="line">     &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;</span><br><span class="line">     &lt;artifactId&gt;poi-ooxml-schemas&lt;/artifactId&gt;</span><br><span class="line">     &lt;version&gt;3.9&lt;/version&gt;</span><br><span class="line">   &lt;/dependency&gt;</span><br><span class="line">   &lt;dependency&gt;</span><br><span class="line">     &lt;groupId&gt;org.apache.poi&lt;/groupId&gt;</span><br><span class="line">     &lt;artifactId&gt;poi-scratchpad&lt;/artifactId&gt;</span><br><span class="line">     &lt;version&gt;3.9&lt;/version&gt;</span><br><span class="line">   &lt;/dependency&gt;</span><br><span class="line">   &lt;!--mysql 依赖包--&gt;</span><br><span class="line">   &lt;dependency&gt;</span><br><span class="line">     &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">     &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">     &lt;version&gt;5.1.10&lt;/version&gt;</span><br><span class="line">   &lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/13/一个服务器配置两个tomcat/" itemprop="url">
-                  一个服务器配置两个Tomcat
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-13T22:08:28+08:00" content="2016-08-13">
-              2016-08-13
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/java/" rel="tag">#java</a>
           
-            
+            <a href="/tags/MySQL/" rel="tag">#MySQL</a>
           
-
-          
-
-          
-          
-
+            <a href="/tags/Excle/" rel="tag">#Excle</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>&ensp;&ensp;&ensp;&ensp;前段时间在看Ngins如何做负载均衡，但是我只有一个服务器，所以必须在一台服务器上搭两个tomcat，才能做一个简单的试验。在网上找了很多资料，但是很多说的不是很全面，有些细节可能博主觉得简单，就没有明确提出来，所以我把自己当时做的东西记录了一下，在这里做一个分享。</p>
-<p>&ensp;&ensp;&ensp;&ensp;首先，下载Tomcat的安装文件，然后分别解压到两个文件夹里面，然后改动其中一个tomcat配置文件的相关配置参数就可以了。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/13/一个服务器配置两个tomcat/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/13/一个服务器配置两个tomcat/" rel="next" title="一个服务器配置两个Tomcat">
+                <i class="fa fa-chevron-left"></i> 一个服务器配置两个Tomcat
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/25/spring常用注解（一）/" itemprop="url">
-                  Spring常用注解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-25T22:11:27+08:00" content="2016-07-25">
-              2016-07-25
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="注解的基础知识"><a href="#注解的基础知识" class="headerlink" title="注解的基础知识"></a>注解的基础知识</h3><p>&ensp;&ensp;&ensp;&ensp;在看spring注解之前，我们先简单了解一下java注解相关的知识；在java EE5中引入了很多重要的东西，其中很重要的一点就是注解。它们可以提供完整的描述程序所需要的信息，而这些信息是无法用Java来表达的。注解的语法比较简单，除了@符号的使用之外，它基本与Java固有的语法一致。Java EE5内置了三种，定义在java.lang中的注解：</p>
-<p>@Averride,表示当前的方法定义将覆盖基类中的方法。如果出现拼写错误，或者签名和被覆盖方法不一致，编译器会发出错误提示。</p>
-<p>@Deprecated,如果使用了注解为它的元素，编译器会发出警告。</p>
-<p>@SupperssWarning,关闭不当的编译器警告信息。</p>
-<h3 id="spring的注解"><a href="#spring的注解" class="headerlink" title="spring的注解"></a>spring的注解</h3><p>&ensp;&ensp;&ensp;&ensp;我们都知道，spring框架提供xml文件的配置，也提供基于注解的方式实现配置任何的Bean实例。</p>
-<p>@Controller,它将该类标记为子控制器，DispatcherServlet类为主控制器，通过两级控制器，才能够将页面请求的数据送到相应的类去处理。</p>
-<p>@Service,标注一个业务逻辑组件类，通常是多层架构的Service层</p>
-<p>@Repository 标注一个DAO组件类，将Dao类声明为Bean，我们就不再需要在 XML 中显式使用 <bean/> 进行Bean 的配置。Spring 在容器初始化时将自动扫描 base-package 指定的包及其子包下的所有 class文件，所有标注了 @Repository 的类都将被注册为 Spring Bean。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/25/spring常用注解（一）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/16/JavaMail简单应用/" itemprop="url">
-                  JavaMail简单应用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-16T05:21:28+08:00" content="2016-06-16">
-              2016-06-16
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>&ensp;&ensp;&ensp;&ensp;前言，之前在做项目是时候需要用到发邮件的功能尽管java对应的类，但是在第一次用的时候还是遇到了一些麻烦。在功能测试正常的情况下替换学校邮箱服务器的相关信息时又折腾了一会儿，所以在这里做一个简单的小结。</p>
-<h3 id="为了更直观的介绍这点东西，首先看一下源码："><a href="#为了更直观的介绍这点东西，首先看一下源码：" class="headerlink" title="为了更直观的介绍这点东西，首先看一下源码："></a>为了更直观的介绍这点东西，首先看一下源码：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SendMail</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sendMail</span><span class="params">(String email,String content,String title)</span> <span class="keyword">throws</span> AddressException, MessagingException </span>&#123;</span><br><span class="line"></span><br><span class="line">		Properties props = System.getProperties();<span class="comment">//环境变量设置。发送邮件时才需要</span></span><br><span class="line">		props.setProperty(<span class="string">"mail.transport.protocol"</span>, <span class="string">"smtp"</span>);<span class="comment">//发送使用的协议</span></span><br><span class="line">		props.setProperty(<span class="string">"mail.host"</span>, <span class="string">"****"</span>);<span class="comment">//发送服务器的主机地址</span></span><br><span class="line">		props.setProperty(<span class="string">"mail.smtp.auth"</span>, <span class="string">"true"</span>);<span class="comment">//请求身份验证</span></span><br><span class="line">		Session session = Session.getDefaultInstance(props);</span><br><span class="line">		MimeMessage message = <span class="keyword">new</span> MimeMessage(session);<span class="comment">//代表一封邮件</span></span><br><span class="line"></span><br><span class="line">		message.setFrom(<span class="keyword">new</span> InternetAddress(<span class="string">"****"</span>));<span class="comment">//设置发件人</span></span><br><span class="line">		message.setRecipients(Message.RecipientType.TO, email);<span class="comment">//设置收件人</span></span><br><span class="line">		<span class="keyword">if</span>(title==<span class="keyword">null</span>)</span><br><span class="line">			title=<span class="string">"邮件标题"</span>;</span><br><span class="line">		message.setSubject(title);<span class="comment">//设置主体</span></span><br><span class="line">		<span class="comment">//设置邮件的正文内容</span></span><br><span class="line">		<span class="keyword">if</span>(content==<span class="keyword">null</span>)&#123;</span><br><span class="line">			content=<span class="string">"此处为默认邮件内容"</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		message.setText(content);</span><br><span class="line">		message.saveChanges();</span><br><span class="line">		<span class="comment">//发送邮件</span></span><br><span class="line">		Transport ts = session.getTransport();<span class="comment">//得到火箭</span></span><br><span class="line">		<span class="keyword">int</span> flag=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			ts.connect(<span class="string">"****"</span>, <span class="string">"****"</span>);<span class="comment">//连接</span></span><br><span class="line">			System.out.println(<span class="string">"邮箱链接成功"</span>);</span><br><span class="line">			ts.sendMessage(message, message.getAllRecipients());</span><br><span class="line">			ts.close();</span><br><span class="line">		&#125;<span class="keyword">catch</span>(MessagingException e) &#123;</span><br><span class="line">			flag=<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"邮件发送成功"</span>);</span><br><span class="line">		<span class="keyword">return</span> flag;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="下面对代码进行简单的分析："><a href="#下面对代码进行简单的分析：" class="headerlink" title="下面对代码进行简单的分析："></a>下面对代码进行简单的分析：</h3><p>&ensp;&ensp;&ensp;&ensp;其实在源码中已经给出了很多的注释，应该看得明白，在这里我主要是行强调一下加点：</p>
-<ol>
-<li>在设置服务器主机地址的时候，一定要注意：如果是学校或者自己的邮箱服务器，那么在这里可能需要设置为IP地址才可以，写域名可能不能被识别。</li>
-<li>为了保证业务的一致性，这里的意思是说：如果发邮件的前后有其他的相关操作；特别是在服务器崩溃想要尽快找出邮件发送的问题，就需要这里给出更可能详细的信息反馈。例如，我对于邮箱服务器链接和发送的结果都做记录。</li>
-</ol>
-<p>&ensp;&ensp;&ensp;&ensp;简单做一下总结吧，java的文档可以说很详细，在使用新的技术点前，看光放文档可以帮助我们更快的理解和学会使用新的知识点。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/11/为学校的“古老”项目加功能/" itemprop="url">
-                  为学校的“古老”项目加功能
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-11T15:20:28+08:00" content="2016-06-11">
-              2016-06-11
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>&ensp;&ensp;&ensp;&ensp;编码问题一直是程序员开发中很头疼的问题，尤其是中国的程序员会更有体会。前两天学校老师让给学校的其中一个平台上添加修改密码功能（不知道为啥，竟然没有找回密码的功能，只能叹服），问题是学校不能给提供教务系统的登陆接口，因此要验证账户的合法性，我需要用做模拟登陆，然后拿教务系统的验证结果。很明显有以下几个问题：</p>
-<h2 id="1-如何让教务系统的验证码显示在我的页面上？"><a href="#1-如何让教务系统的验证码显示在我的页面上？" class="headerlink" title="1. 如何让教务系统的验证码显示在我的页面上？"></a>1. 如何让教务系统的验证码显示在我的页面上？</h2><p>&ensp;&ensp;&ensp;&ensp;第一个问题比较简单：通过CloseableHttpClient类的方法就可获取到验证码图片，然后保存在在服务器上。因为不是有必要，所以我拿<br>到验证码图片后没有对它里面的内容做识别。<br><img src="http://o8cmndmfu.bkt.clouddn.com/%E7%BD%91%E7%BB%9C%E6%95%99%E5%AD%A6%E5%B9%B3%E5%8F%B0%E8%8E%B7%E5%BE%97%E9%AA%8C%E8%AF%81%E7%A0%81.png" alt="网络教学平台获得验证码">　<br>&ensp;&ensp;第一步实现后，我发现在页面上只能把启动tomcat后第一次保存的验证码图片显示出来，这个可能是因为图片作为静态资源，我尝试了各种从页面获取图片的方式，最后采用图片在服务端用base64加密，将加密后的流返回到页面，</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/06/11/为学校的“古老”项目加功能/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
+  </div>
 
 
           </div>
@@ -727,6 +345,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -746,8 +368,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://o8cmndmfu.bkt.clouddn.com/%E6%B5%B7%E8%B4%BC%E7%8E%8B.jpeg"
@@ -835,6 +466,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -931,6 +573,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

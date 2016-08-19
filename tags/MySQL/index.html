@@ -61,12 +61,10 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content=",,," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
-
-  
 
 
   <link rel="alternate" href="/atom.xml" title="Have A Rest" type="application/atom+xml" />
@@ -81,27 +79,15 @@
 
 
 
-<meta name="description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;之前用redis做过消息队列，只是用一个redis没有做过主从配置，最近在公司实习，因为考虑实际的宕机问题，所以看了相关的文章了解相关的配置方式，简单的记录下配置步骤。
-&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;首先按照正常顺序解压两个redis源码包并进行安装，然后修改从库redis.conf文件，修改端口号：">
-<meta name="keywords">
+<meta name="description">
 <meta property="og:type" content="website">
-<meta property="og:title" content="一个服务器配置主从Redis">
-<meta property="og:url" content="http://yoursite.com/一个服务器配置主从Redis.html">
+<meta property="og:title" content="Have A Rest">
+<meta property="og:url" content="http://yoursite.com/tags/MySQL/index.html">
 <meta property="og:site_name" content="Have A Rest">
-<meta property="og:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;之前用redis做过消息队列，只是用一个redis没有做过主从配置，最近在公司实习，因为考虑实际的宕机问题，所以看了相关的文章了解相关的配置方式，简单的记录下配置步骤。
-&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;首先按照正常顺序解压两个redis源码包并进行安装，然后修改从库redis.conf文件，修改端口号：">
-<meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/port.png">
-<meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/slaveof.png">
-<meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/addData.png">
-<meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/getData.png">
-<meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/info.png">
-<meta property="og:image" content="http://o8cmndmfu.bkt.clouddn.com/other.png">
-<meta property="og:updated_time" content="2016-08-13T14:46:18.792Z">
+<meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一个服务器配置主从Redis">
-<meta name="twitter:description" content="&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;之前用redis做过消息队列，只是用一个redis没有做过主从配置，最近在公司实习，因为考虑实际的宕机问题，所以看了相关的文章了解相关的配置方式，简单的记录下配置步骤。
-&amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;首先按照正常顺序解压两个redis源码包并进行安装，然后修改从库redis.conf文件，修改端口号：">
-<meta name="twitter:image" content="http://o8cmndmfu.bkt.clouddn.com/port.png">
+<meta name="twitter:title" content="Have A Rest">
+<meta name="twitter:description">
 
 
 
@@ -119,13 +105,7 @@
   };
 </script>
 
-  <title>
-  
-
-  
-    一个服务器配置主从Redis | Have A Rest
-  
-</title>
+  <title> 标签: MySQL | Have A Rest </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -234,26 +214,46 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
+  <div id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        MySQL
+        <small>标签</small>
+      </h2>
+    </div>
+
     
-    
-      <p>&ensp;&ensp;&ensp;&ensp;之前用redis做过消息队列，只是用一个redis没有做过主从配置，最近在公司实习，因为考虑实际的宕机问题，所以看了相关的文章了解相关的配置方式，简单的记录下配置步骤。</p>
-<p>&ensp;&ensp;&ensp;&ensp;首先按照正常顺序解压两个redis源码包并进行安装，然后修改从库redis.conf文件，修改端口号：</p>
-<p><img src="http://o8cmndmfu.bkt.clouddn.com/port.png" alt="port"></p>
-<a id="more"></a>
-<p>配置主从关系：<img src="http://o8cmndmfu.bkt.clouddn.com/slaveof.png" alt="slaveof"></p>
-<p>然后分别启动主从服务器，这里注意如果端口号不是默认的6379端口，在启动时要指定端口号。<br>然后测试，在主库进行添加数据：</p>
-<p><img src="http://o8cmndmfu.bkt.clouddn.com/addData.png" alt="addData"></p>
-<p>然后再从库查看数据是否已经同步；</p>
-<p><img src="http://o8cmndmfu.bkt.clouddn.com/getData.png" alt="getData"></p>
-<p>这样就可以看到达到了预期的效果。<br>进入从库后可以通过info命令查看从库信息，其中会宝库主从库关系</p>
-<p><img src="http://o8cmndmfu.bkt.clouddn.com/info.png" alt="info"></p>
-<p>这里我们可以看到主库的ip，端口号，还有是否正常同步，up代表正常同步，down说明同步异常</p>
-<p><img src="http://o8cmndmfu.bkt.clouddn.com/other.png" alt="other"></p>
-<p>参数keys表示有几个key，以及过期key的数量</p>
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/08/19/写一个关于Java和MySQL的小工具/" itemprop="url">
+              
+                <span itemprop="name">写一个关于Java和MySQL的小工具</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-08-19T05:21:28+08:00"
+              content="2016-08-19" >
+          08-19
+        </time>
+      </div>
+
+    </header>
+  </article>
+
 
     
   </div>
+
+  
 
 
           </div>
@@ -261,10 +261,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
